@@ -1,11 +1,14 @@
 import { createServerClient } from '@supabase/ssr';
 import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public';
 import { DEFAULT_LANG, LANG_COOKIE, isLang } from '$lib/i18n';
+import { supabaseFetch } from '$lib/supabase';
 import type { SetAllCookies } from '@supabase/ssr';
 import type { Handle } from '@sveltejs/kit';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.supabase = createServerClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY, {
+		// свой fetch: с таймаутом, чтобы страница не ждала мёртвую связь
+		global: { fetch: supabaseFetch },
 		cookies: {
 			getAll: () => event.cookies.getAll(),
 			setAll: (cookiesToSet: Parameters<SetAllCookies>[0]) => {

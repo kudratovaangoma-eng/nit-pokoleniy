@@ -1,12 +1,5 @@
-import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public';
+import { supabaseConfigured } from '$lib/supabase';
 import type { LayoutServerLoad } from './$types';
-
-/**
- * Пока в .env заглушки, вход и любое сохранение молча возвращают ошибку —
- * со стороны это выглядит как «кнопки не работают». Поэтому говорим прямо.
- */
-const supabaseConfigured =
-	!PUBLIC_SUPABASE_URL.includes('example.supabase.co') && PUBLIC_SUPABASE_ANON_KEY !== 'replace-me';
 
 export const load: LayoutServerLoad = async ({ locals }) => {
 	let displayName = '';
