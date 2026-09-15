@@ -7,16 +7,20 @@
 	 * кнопка «назад» ведёт себя ожидаемо, отфильтрованной лентой можно
 	 * поделиться ссылкой в Telegram — а так здесь и зовут людей.
 	 */
-	let { param, options, current } = $props<{
+	let { param, options, current, clears = [] } = $props<{
 		param: string;
 		options: { value: string; label: string }[];
 		current: string;
+		/** Параметры, которые теряют смысл при смене этого фильтра. */
+		clears?: string[];
 	}>();
 
 	function hrefFor(value: string): string {
 		const url = new URL($page.url);
 		if (value) url.searchParams.set(param, value);
 		else url.searchParams.delete(param);
+		// сменили тип — подраздел от прежнего типа больше не подходит
+		for (const name of clears) url.searchParams.delete(name);
 		return url.pathname + url.search;
 	}
 </script>

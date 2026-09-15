@@ -4,6 +4,35 @@ export type PersonRole = 'carrier' | 'helper';
 export type TaskStatus = 'open' | 'in_progress' | 'done';
 
 export const HERITAGE_TYPES: HeritageType[] = ['song', 'ritual', 'craft', 'oral_history'];
+
+/**
+ * Подразделы внутри типа наследия.
+ *
+ * ЗДЕСЬ ЗАПОЛНЯЕТСЯ СПИСОК — это единственное место. Порядок в массиве =
+ * порядок в форме и в фильтрах. Слева здесь код (латиницей, в базу
+ * попадает он), подпись берётся из словарей по ключу `subtype.<код>`:
+ * нужно добавить её в src/lib/i18n/ru.json и tg.json.
+ *
+ * У устной истории подразделов нет — так решено осознанно.
+ * Пока массив пуст, поле подраздела просто не показывается.
+ */
+/* Записан через mapped type, а не через Record<>: в этом файле Record —
+   наш собственный тип записи архива, он перекрывает утилиту TypeScript. */
+export const SUBTYPES: { [K in HeritageType]: readonly string[] } = {
+	song: [],
+	ritual: [],
+	craft: [],
+	oral_history: []
+};
+
+export function subtypesOf(type: HeritageType): readonly string[] {
+	return SUBTYPES[type] ?? [];
+}
+
+export function isValidSubtype(type: HeritageType, subtype: string): boolean {
+	// пустой подраздел допустим: важнее записать, чем расклассифицировать
+	return subtype === '' || subtypesOf(type).includes(subtype);
+}
 export const PERSON_ROLES: PersonRole[] = ['carrier', 'helper'];
 
 /** Навыки помощников. Список короткий намеренно: длинный никто не читает. */
@@ -28,6 +57,8 @@ export type Record = {
 	id: string;
 	title: string;
 	type: HeritageType;
+	/** Код подраздела внутри типа; пустая строка — подраздел не указан. */
+	subtype: string;
 	/** Имя носителя. Показывается рядом с материалом всегда. */
 	carrier_name: string;
 	media_kind: MediaKind;

@@ -5,7 +5,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 	const { data, error: dbError } = await locals.supabase
 		.from('records')
 		.select(
-			'id, title, type, carrier_name, media_kind, media_url, body, location, date_recorded, created_at, recorded_by, recorder:profiles!records_recorded_by_fkey(display_name)'
+			'id, title, type, subtype, carrier_name, media_kind, media_url, body, location, date_recorded, created_at, recorded_by, recorder:profiles!records_recorded_by_fkey(display_name)'
 		)
 		.eq('id', params.id)
 		.maybeSingle();

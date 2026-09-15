@@ -2,7 +2,7 @@
 	import EmptyState from '$lib/components/EmptyState.svelte';
 	import FilterChips from '$lib/components/FilterChips.svelte';
 	import { formatDate, lang, t } from '$lib/i18n';
-	import { HERITAGE_TYPES } from '$lib/types';
+	import { HERITAGE_TYPES, subtypesOf, type HeritageType } from '$lib/types';
 
 	let { data } = $props();
 
@@ -15,6 +15,15 @@
 
 	let typeOptions = $derived(
 		HERITAGE_TYPES.map((value) => ({ value, label: $t(`heritage.${value}`) }))
+	);
+
+	let subtypeOptions = $derived(
+		HERITAGE_TYPES.includes(data.type as HeritageType)
+			? subtypesOf(data.type as HeritageType).map((value) => ({
+					value,
+					label: $t(`subtype.${value}`)
+				}))
+			: []
 	);
 </script>
 
@@ -41,10 +50,19 @@
 	{#if data.type}
 		<input type="hidden" name="type" value={data.type} />
 	{/if}
+	{#if data.subtype}
+		<input type="hidden" name="subtype" value={data.subtype} />
+	{/if}
 	<button class="btn" type="submit">{$t('common.find')}</button>
 </form>
 
-<FilterChips param="type" options={typeOptions} current={data.type} />
+<FilterChips param="type" options={typeOptions} current={data.type} clears={['subtype']} />
+
+<!-- Подразделы показываются, только когда выбран тип: список «колыбельные,
+     свадебные, гончарное, поминальные» вперемешку ничего не объясняет -->
+{#if subtypeOptions.length > 0}
+	<FilterChips param="subtype" options={subtypeOptions} current={data.subtype} />
+{/if}
 
 <!-- Если лента не загрузилась, нельзя писать «ничего не нашлось»: человек
      решит, что фильтр отработал и записей просто нет. -->
@@ -65,6 +83,9 @@
 						<span class="card__icon" aria-hidden="true">{ICONS[record.type]}</span>
 						<div class="card__head-text">
 							<span class="badge">{$t(`heritage.${record.type}`)}</span>
+							{#if record.subtype}
+								<span class="badge badge--soft">{$t(`subtype.${record.subtype}`)}</span>
+							{/if}
 							<h3 style="margin-top: 8px">{record.title}</h3>
 						</div>
 					</div>

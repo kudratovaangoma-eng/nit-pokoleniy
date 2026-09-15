@@ -660,6 +660,13 @@ a.card:active {
 	color: var(--accent-text);
 }
 
+/* Подраздел — уточнение к типу, поэтому тише основной метки */
+.badge--soft {
+	background: var(--bg-soft);
+	color: var(--muted);
+	font-weight: 600;
+}
+
 .badge--ok {
 	background: var(--ok-soft);
 	color: var(--ok);

@@ -1,5 +1,5 @@
 import { fail, redirect } from '@sveltejs/kit';
-import { HERITAGE_TYPES, type HeritageType, type MediaKind } from '$lib/types';
+import { HERITAGE_TYPES, isValidSubtype, type HeritageType, type MediaKind } from '$lib/types';
 import type { Actions, PageServerLoad } from './$types';
 
 const MAX_BYTES = 50 * 1024 * 1024;
@@ -23,15 +23,22 @@ export const actions: Actions = {
 		const title = String(form.get('title') ?? '').trim();
 		const carrierName = String(form.get('carrier_name') ?? '').trim();
 		const type = String(form.get('type') ?? '') as HeritageType;
+		const subtype = String(form.get('subtype') ?? '').trim();
 		const location = String(form.get('location') ?? '').trim();
 		const dateRecorded = String(form.get('date_recorded') ?? '').trim();
 		const body = String(form.get('body') ?? '').trim();
 		const file = form.get('file');
 
-		const values = { title, carrierName, type, location, dateRecorded, body };
+		const values = { title, carrierName, type, subtype, location, dateRecorded, body };
 
 		if (!title || !carrierName || !HERITAGE_TYPES.includes(type)) {
 			return fail(400, { ...values, missingFields: true });
+		}
+
+		// Подраздел принимаем только из списка: иначе через полгода в архиве
+		// будут «колыбельная», «колыбельные» и «алла» как три разных раздела.
+		if (!isValidSubtype(type, subtype)) {
+			return fail(400, { ...values, badSubtype: true });
 		}
 
 		const hasFile = file instanceof File && file.size > 0;
@@ -72,6 +79,7 @@ export const actions: Actions = {
 			.insert({
 				title,
 				type,
+				subtype,
 				carrier_name: carrierName,
 				media_kind: mediaKind,
 				media_url: mediaPath,

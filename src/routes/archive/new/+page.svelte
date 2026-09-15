@@ -4,7 +4,7 @@
 	import LoginRequired from '$lib/components/LoginRequired.svelte';
 	import { compressImage } from '$lib/compressImage';
 	import { t } from '$lib/i18n';
-	import { HERITAGE_TYPES } from '$lib/types';
+	import { HERITAGE_TYPES, subtypesOf } from '$lib/types';
 
 	let { data, form } = $props();
 
@@ -19,6 +19,8 @@
 	let carrierName = $state(form?.carrierName ?? '');
 	// svelte-ignore state_referenced_locally
 	let type = $state(form?.type ?? 'song');
+	// svelte-ignore state_referenced_locally
+	let subtype = $state(form?.subtype ?? '');
 	// svelte-ignore state_referenced_locally
 	let location = $state(form?.location ?? '');
 	// svelte-ignore state_referenced_locally
@@ -41,6 +43,7 @@
 					title = draft.title ?? '';
 					carrierName = draft.carrierName ?? '';
 					type = draft.type ?? 'song';
+					subtype = draft.subtype ?? '';
 					body = draft.body ?? '';
 					draftRestored = true;
 				}
@@ -56,13 +59,20 @@
 
 	// Связь может оборваться посреди загрузки — введённое не должно пропасть.
 	$effect(() => {
-		const draft = { title, carrierName, type, location, dateRecorded, body };
+		const draft = { title, carrierName, type, subtype, location, dateRecorded, body };
 		if (!restored) return;
 		try {
 			localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
 		} catch {
 			// переполнение хранилища — не повод ломать форму
 		}
+	});
+
+	let availableSubtypes = $derived(subtypesOf(type));
+
+	// Сменили тип — прежний подраздел к нему уже не относится
+	$effect(() => {
+		if (subtype && !availableSubtypes.includes(subtype)) subtype = '';
 	});
 
 	function onFileChange(event: Event) {
@@ -85,6 +95,8 @@
 
 	{#if form?.missingFields}
 		<p class="notice notice--error">{$t('archive.needFields')}</p>
+	{:else if form?.badSubtype}
+		<p class="notice notice--error">{$t('archive.badSubtype')}</p>
 	{:else if form?.needContent}
 		<p class="notice notice--error">{$t('archive.needContent')}</p>
 	{:else if form?.tooLarge}
@@ -146,6 +158,20 @@
 				{/each}
 			</select>
 		</div>
+
+		<!-- Подраздел есть не у каждого типа: у устной истории его нет,
+		     и лишнее пустое поле в форме только мешает -->
+		{#if availableSubtypes.length > 0}
+			<div class="field">
+				<label for="subtype">{$t('archive.subtype')}</label>
+				<select id="subtype" name="subtype" bind:value={subtype}>
+					<option value="">{$t('archive.subtypeNotSet')}</option>
+					{#each availableSubtypes as value (value)}
+						<option {value}>{$t(`subtype.${value}`)}</option>
+					{/each}
+				</select>
+			</div>
+		{/if}
 
 		<div class="field">
 			<label for="file">{$t('archive.material')}</label>

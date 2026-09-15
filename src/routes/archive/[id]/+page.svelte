@@ -17,7 +17,14 @@
 
 <p><a class="btn--link" href="/archive">← {$t('archive.title')}</a></p>
 
-<span class="badge">{$t(`heritage.${record.type}`)}</span>
+<div class="stack" style="gap: 8px">
+	<span class="badge">{$t(`heritage.${record.type}`)}</span>
+	{#if record.subtype}
+		<a class="badge badge--soft" href="/archive?type={record.type}&subtype={record.subtype}">
+			{$t(`subtype.${record.subtype}`)}
+		</a>
+	{/if}
+</div>
 <h1>{record.title}</h1>
 
 <!-- Имя носителя стоит над материалом и набрано крупно: это авторство,
