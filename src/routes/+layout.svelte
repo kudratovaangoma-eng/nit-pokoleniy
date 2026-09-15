@@ -24,31 +24,43 @@
 				<circle cx="8" cy="7" r="2.6" fill="var(--accent-soft)" />
 				<circle cx="24" cy="25" r="2.6" fill="var(--accent-soft)" />
 			</svg>
-			{$t('site.name')}
+			<span class="site-header__title">{$t('site.name')}</span>
 		</a>
 
-		<!--
-			Выбор языка виден сразу и показывает оба варианта: переключатель
-			с одной надписью на чужом языке человек не опознаёт как переключатель.
-			Обычная форма — работает и без JS.
-		-->
-		<form method="POST" action="/lang" class="lang-switch" aria-label={$t('lang.label')}>
-			<input type="hidden" name="redirectTo" value={path + $page.url.search} />
-			<button type="submit" name="lang" value="ru" aria-current={$lang === 'ru' ? 'true' : undefined}>
-				РУ
-			</button>
-			<button type="submit" name="lang" value="tg" aria-current={$lang === 'tg' ? 'true' : undefined}>
-				ТҶ
-			</button>
-		</form>
-
-		{#if loggedIn}
-			<form method="POST" action="/auth/logout">
-				<button class="btn btn--sm" type="submit">{$t('nav.logout')}</button>
+		<div class="site-header__actions">
+			<!--
+				Выбор языка виден сразу и показывает оба варианта: переключатель
+				с одной надписью на чужом языке человек не опознаёт как переключатель.
+				Обычная форма — работает и без JS.
+			-->
+			<form method="POST" action="/lang" class="lang-switch" aria-label={$t('lang.label')}>
+				<input type="hidden" name="redirectTo" value={path + $page.url.search} />
+				<button
+					type="submit"
+					name="lang"
+					value="ru"
+					aria-current={$lang === 'ru' ? 'true' : undefined}
+				>
+					РУ
+				</button>
+				<button
+					type="submit"
+					name="lang"
+					value="tg"
+					aria-current={$lang === 'tg' ? 'true' : undefined}
+				>
+					ТҶ
+				</button>
 			</form>
-		{:else}
-			<a class="btn btn--sm" href="/auth/login">{$t('nav.login')}</a>
-		{/if}
+
+			{#if loggedIn}
+				<form method="POST" action="/auth/logout">
+					<button class="btn btn--sm" type="submit">{$t('nav.logout')}</button>
+				</form>
+			{:else}
+				<a class="btn btn--sm" href="/auth/login">{$t('nav.login')}</a>
+			{/if}
+		</div>
 
 		<!-- На телефоне эта панель уезжает вниз экрана, под большой палец -->
 		<nav class="nav" aria-label={$t('site.name')}>
