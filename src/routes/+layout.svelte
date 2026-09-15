@@ -2,7 +2,7 @@
 	import '../app.css';
 	import { page } from '$app/stores';
 	import Icon from '$lib/components/Icon.svelte';
-	import { t } from '$lib/i18n';
+	import { lang, t } from '$lib/i18n';
 
 	let { data, children } = $props();
 	let loggedIn = $derived(Boolean(data.session));
@@ -27,18 +27,27 @@
 			{$t('site.name')}
 		</a>
 
-		<!-- Смена языка и выход — обычные формы: работают и без JS -->
-		<form method="POST" action="/lang">
+		<!--
+			Выбор языка виден сразу и показывает оба варианта: переключатель
+			с одной надписью на чужом языке человек не опознаёт как переключатель.
+			Обычная форма — работает и без JS.
+		-->
+		<form method="POST" action="/lang" class="lang-switch" aria-label={$t('lang.label')}>
 			<input type="hidden" name="redirectTo" value={path + $page.url.search} />
-			<button class="btn btn--link" type="submit">{$t('lang.switch')}</button>
+			<button type="submit" name="lang" value="ru" aria-current={$lang === 'ru' ? 'true' : undefined}>
+				РУ
+			</button>
+			<button type="submit" name="lang" value="tg" aria-current={$lang === 'tg' ? 'true' : undefined}>
+				ТҶ
+			</button>
 		</form>
 
 		{#if loggedIn}
 			<form method="POST" action="/auth/logout">
-				<button class="btn btn--link" type="submit">{$t('nav.logout')}</button>
+				<button class="btn btn--sm" type="submit">{$t('nav.logout')}</button>
 			</form>
 		{:else}
-			<a class="btn btn--link" href="/auth/login">{$t('nav.login')}</a>
+			<a class="btn btn--sm" href="/auth/login">{$t('nav.login')}</a>
 		{/if}
 
 		<!-- На телефоне эта панель уезжает вниз экрана, под большой палец -->

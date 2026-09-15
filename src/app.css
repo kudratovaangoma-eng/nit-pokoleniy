@@ -346,6 +346,56 @@ a {
 	transform: none;
 }
 
+.btn--sm {
+	min-height: 40px;
+	padding: 6px 16px;
+	font-size: 0.9rem;
+}
+
+/* Переключатель языка: оба варианта видны сразу, выбранный залит цветом.
+   Кнопка с одной надписью на чужом языке читается как непонятная надпись,
+   а не как переключатель — это уже проверено на живом человеке. */
+.lang-switch {
+	display: inline-flex;
+	padding: 3px;
+	gap: 2px;
+	border: 1.5px solid var(--border-strong);
+	border-radius: 999px;
+	background: var(--surface);
+}
+
+.lang-switch button {
+	min-width: 42px;
+	min-height: 34px;
+	padding: 0 11px;
+	border: 0;
+	border-radius: 999px;
+	background: none;
+	color: var(--muted);
+	font: inherit;
+	font-size: 0.85rem;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+	cursor: pointer;
+	transition: background 0.15s ease, color 0.15s ease;
+}
+
+.lang-switch button:hover {
+	color: var(--text);
+	background: var(--bg-soft);
+}
+
+.lang-switch button[aria-current='true'] {
+	background: var(--accent);
+	color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+	.lang-switch button[aria-current='true'] {
+		color: #1a1008;
+	}
+}
+
 .btn--link {
 	min-height: 44px;
 	padding: 0 8px;
