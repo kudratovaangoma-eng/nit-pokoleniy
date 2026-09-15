@@ -41,5 +41,10 @@
 </header>
 
 <main class="container">
+	{#if !data.supabaseConfigured}
+		<!-- Без ключей Supabase вход и сохранение не работают. Молчать об этом
+		     нельзя: человек решит, что сломаны кнопки, а не настройка. -->
+		<p class="notice notice--error">{$t('setup.noDatabase')}</p>
+	{/if}
 	{@render children()}
 </main>
