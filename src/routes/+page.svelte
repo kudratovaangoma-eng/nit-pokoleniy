@@ -10,8 +10,10 @@
 	<meta name="description" content={$t('site.tagline')} />
 </svelte:head>
 
-<h1>{$t('site.name')}</h1>
-<p class="lead">{$t('home.lead')}</p>
+<section class="hero">
+	<h1>{$t('home.heroBefore')} <span class="hero__accent">{$t('home.heroAccent')}</span></h1>
+	<p class="lead">{$t('home.lead')}</p>
+</section>
 
 {#if data.loadError}
 	<p class="notice notice--error">{$t('common.loadFailed')}</p>

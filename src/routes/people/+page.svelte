@@ -8,6 +8,11 @@
 
 	let roleOptions = $derived(PERSON_ROLES.map((value) => ({ value, label: $t(`role.${value}`) })));
 	let skillOptions = SKILL_TAGS.map((value) => ({ value, label: value }));
+
+	/** Первая буква имени вместо фотографии: снимков носителей у нас нет. */
+	function initial(name: string): string {
+		return name.trim().charAt(0).toUpperCase() || '?';
+	}
 </script>
 
 <svelte:head><title>{$t('people.title')} — {$t('site.name')}</title></svelte:head>
@@ -44,10 +49,15 @@
 	<ul class="cards">
 		{#each data.people as person (person.id)}
 			<li class="card">
-				<span class="badge" class:badge--ok={person.role === 'helper'}>
-					{$t(`role.${person.role}`)}
-				</span>
-				<h3>{person.name}</h3>
+				<div class="card__head">
+					<span class="avatar" aria-hidden="true">{initial(person.name)}</span>
+					<div class="card__head-text">
+						<span class="badge" class:badge--ok={person.role === 'helper'}>
+							{$t(`role.${person.role}`)}
+						</span>
+						<h3 style="margin-top: 8px">{person.name}</h3>
+					</div>
+				</div>
 				{#if person.skills_or_knowledge}
 					<p>{person.skills_or_knowledge}</p>
 				{/if}

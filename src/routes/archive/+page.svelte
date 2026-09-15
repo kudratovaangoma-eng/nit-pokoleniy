@@ -61,11 +61,13 @@
 		{#each data.records as record (record.id)}
 			<li>
 				<a class="card" href="/archive/{record.id}">
-					<div class="stack" style="gap: 8px; margin-bottom: 6px">
-						<span aria-hidden="true" style="font-size: 1.4rem">{ICONS[record.type]}</span>
-						<span class="badge">{$t(`heritage.${record.type}`)}</span>
+					<div class="card__head">
+						<span class="card__icon" aria-hidden="true">{ICONS[record.type]}</span>
+						<div class="card__head-text">
+							<span class="badge">{$t(`heritage.${record.type}`)}</span>
+							<h3 style="margin-top: 8px">{record.title}</h3>
+						</div>
 					</div>
-					<h3>{record.title}</h3>
 					<!-- Имя носителя — на карточке, а не только внутри: материал
 					     не должен появляться нигде без человека, от которого он получен -->
 					<p class="card__carrier">{record.carrier_name}</p>

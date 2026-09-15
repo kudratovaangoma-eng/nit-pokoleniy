@@ -1,28 +1,82 @@
 /*
- * Дизайн-решения продиктованы аудиторией: пожилой носитель традиции
- * с недорогим телефоном и слабым интернетом.
- *  - базовый размер 18px, никаких мелких подписей меньше 15px;
- *  - кликабельное — не меньше 48px по высоте;
- *  - никаких ховер-меню и скрытых жестов: всё видно сразу;
- *  - системные шрифты — ни одного килобайта на веб-шрифты.
+ * Аудитория двойная, и это определяет всё.
+ *
+ * Молодёжь и диаспора — те, кого нужно зацепить: им нужен интерфейс,
+ * похожий на приложения, которыми они пользуются каждый день. Тёмная тема,
+ * крупная типографика, карточки, нижняя панель навигации на телефоне.
+ *
+ * Носители традиций — пожилые люди с недорогими телефонами: им нужны
+ * крупные цели (не меньше 48px), высокий контраст, отсутствие скрытых
+ * жестов и ховер-меню. Всё видно сразу.
+ *
+ * Эти требования не противоречат друг другу: современный интерфейс —
+ * это не мелкий шрифт, а ясная иерархия и воздух. Шрифты системные:
+ * ни одного килобайта на веб-шрифты, трафик здесь стоит денег.
  */
 
 :root {
-	--bg: #faf6f0;
+	color-scheme: light dark;
+
+	--bg: #fbf8f4;
+	--bg-soft: #f4ede3;
 	--surface: #ffffff;
-	--text: #241c14;
-	--muted: #5a4d40;
-	--border: #e0d5c5;
-	--accent: #7a4a1e;
-	--accent-dark: #5e3813;
-	--accent-soft: #f3e7d8;
-	--ok: #2c6a39;
-	--ok-soft: #e4f0e5;
-	--warn: #9c3a15;
-	--warn-soft: #fbe6dd;
-	--radius: 12px;
+	--surface-2: #fdfaf6;
+	--text: #1a1410;
+	--muted: #6b5d4f;
+	--border: #e7dccc;
+	--border-strong: #d6c6b0;
+
+	/* Терракота — цвет обожжённой глины и шафрана; second — холодный
+	   контрапункт, чтобы страница не выглядела музейной витриной */
+	--accent: #c2410c;
+	--accent-hover: #9a3412;
+	--accent-soft: #fdecd8;
+	--accent-text: #9a3412;
+	--second: #0f766e;
+	--second-soft: #d9f2ee;
+
+	--ok: #15803d;
+	--ok-soft: #dcfce7;
+	--warn: #b91c1c;
+	--warn-soft: #fee2e2;
+
+	--radius: 14px;
+	--radius-lg: 20px;
 	--gap: 16px;
-	--maxw: 900px;
+	--maxw: 960px;
+
+	--shadow-sm: 0 1px 2px rgba(26, 20, 16, 0.06), 0 1px 3px rgba(26, 20, 16, 0.04);
+	--shadow-md: 0 4px 12px rgba(26, 20, 16, 0.08), 0 2px 4px rgba(26, 20, 16, 0.04);
+	--shadow-lg: 0 12px 28px rgba(26, 20, 16, 0.12), 0 4px 8px rgba(26, 20, 16, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: #12100e;
+		--bg-soft: #1a1613;
+		--surface: #1c1917;
+		--surface-2: #232019;
+		--text: #f5f0e8;
+		--muted: #b3a595;
+		--border: #332e28;
+		--border-strong: #4a423a;
+
+		--accent: #fb923c;
+		--accent-hover: #fdba74;
+		--accent-soft: #37220f;
+		--accent-text: #fdba74;
+		--second: #2dd4bf;
+		--second-soft: #10302c;
+
+		--ok: #4ade80;
+		--ok-soft: #14301d;
+		--warn: #fca5a5;
+		--warn-soft: #3b1618;
+
+		--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+		--shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+		--shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.55);
+	}
 }
 
 * {
@@ -35,45 +89,72 @@ html {
 
 body {
 	margin: 0;
-	font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
-	font-size: 18px;
-	line-height: 1.55;
+	font-family:
+		system-ui,
+		-apple-system,
+		'Segoe UI',
+		Roboto,
+		sans-serif;
+	font-size: 17px;
+	line-height: 1.6;
 	color: var(--text);
 	background: var(--bg);
 	-webkit-text-size-adjust: 100%;
+	/* место под нижнюю панель навигации на телефоне */
+	padding-bottom: 88px;
 }
 
+@media (min-width: 760px) {
+	body {
+		padding-bottom: 0;
+	}
+}
+
+/* --- Типографика --------------------------------------------------------- */
+
 h1 {
-	font-size: 1.7rem;
-	line-height: 1.25;
-	margin: 0 0 8px;
+	font-size: clamp(1.75rem, 1.3rem + 2.2vw, 2.6rem);
+	line-height: 1.15;
+	letter-spacing: -0.02em;
+	font-weight: 800;
+	margin: 0 0 10px;
 }
+
 h2 {
-	font-size: 1.3rem;
-	margin: 32px 0 12px;
+	font-size: clamp(1.2rem, 1.05rem + 0.7vw, 1.5rem);
+	line-height: 1.25;
+	letter-spacing: -0.01em;
+	font-weight: 700;
+	margin: 40px 0 16px;
 }
+
 h3 {
 	font-size: 1.1rem;
-	margin: 0 0 4px;
+	line-height: 1.3;
+	font-weight: 700;
+	margin: 0 0 6px;
 }
+
 p {
 	margin: 0 0 12px;
 }
 
 a {
-	color: var(--accent-dark);
+	color: var(--accent-text);
+	text-underline-offset: 3px;
 }
 
 .container {
 	max-width: var(--maxw);
 	margin: 0 auto;
-	padding: 20px 16px 64px;
+	padding: 24px 18px 72px;
 }
 
 .lead {
-	font-size: 1.05rem;
+	font-size: clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
 	color: var(--muted);
-	margin-bottom: 20px;
+	margin-bottom: 24px;
+	max-width: 62ch;
 }
 
 .muted {
@@ -81,69 +162,132 @@ a {
 }
 
 .small {
-	font-size: 0.85rem;
+	font-size: 0.875rem;
 }
 
-/* --- Шапка ------------------------------------------------------------- */
+/* --- Шапка --------------------------------------------------------------- */
 
 .site-header {
-	background: var(--surface);
+	position: sticky;
+	top: 0;
+	z-index: 20;
+	/* сплошной цвет — запасной вариант для старых Android-браузеров,
+	   которые не знают color-mix: иначе шапка окажется прозрачной */
+	background: var(--bg);
+	background: color-mix(in srgb, var(--bg) 88%, transparent);
+	backdrop-filter: saturate(180%) blur(12px);
 	border-bottom: 1px solid var(--border);
 }
 
 .site-header__inner {
 	max-width: var(--maxw);
 	margin: 0 auto;
-	padding: 12px 16px;
+	padding: 10px 18px;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	gap: 12px;
+	gap: 10px;
 }
 
 .site-header__name {
-	font-weight: 700;
-	font-size: 1.15rem;
-	color: var(--accent-dark);
+	display: inline-flex;
+	align-items: center;
+	gap: 9px;
+	font-weight: 800;
+	font-size: 1.05rem;
+	letter-spacing: -0.01em;
+	color: var(--text);
 	text-decoration: none;
 	margin-right: auto;
 }
 
+.site-header__mark {
+	width: 26px;
+	height: 26px;
+	flex: none;
+}
+
+/* --- Навигация ----------------------------------------------------------- */
+
+/*
+ * На телефоне — панель внизу, как в привычных приложениях: большой палец
+ * достаёт без перехвата. На десктопе она же уезжает в шапку.
+ */
 .nav {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 30;
 	display: flex;
-	flex-wrap: wrap;
-	gap: 4px;
-	width: 100%;
-	order: 3;
+	gap: 2px;
+	padding: 6px 8px calc(6px + env(safe-area-inset-bottom));
+	background: var(--surface);
+	background: color-mix(in srgb, var(--surface) 92%, transparent);
+	backdrop-filter: saturate(180%) blur(12px);
+	border-top: 1px solid var(--border);
 }
 
 .nav a {
-	flex: 1 1 auto;
-	text-align: center;
-	min-height: 48px;
+	flex: 1;
+	min-height: 56px;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: 0 14px;
-	border-radius: var(--radius);
+	gap: 3px;
+	padding: 4px;
+	border-radius: 12px;
 	text-decoration: none;
-	color: var(--text);
+	color: var(--muted);
+	font-size: 0.75rem;
 	font-weight: 600;
+	transition: color 0.15s ease, background 0.15s ease;
+}
+
+.nav a svg {
+	width: 22px;
+	height: 22px;
 }
 
 .nav a[aria-current='page'] {
+	color: var(--accent-text);
 	background: var(--accent-soft);
-	color: var(--accent-dark);
 }
 
-@media (min-width: 700px) {
+@media (min-width: 760px) {
 	.nav {
+		position: static;
 		width: auto;
-		order: 0;
+		padding: 0;
+		background: none;
+		backdrop-filter: none;
+		border: 0;
+		gap: 4px;
+	}
+
+	.nav a {
+		flex: none;
+		flex-direction: row;
+		gap: 7px;
+		min-height: 44px;
+		padding: 0 14px;
+		font-size: 0.95rem;
+		border-radius: 999px;
+	}
+
+	.nav a:hover {
+		background: var(--bg-soft);
+		color: var(--text);
+	}
+
+	.nav a[aria-current='page'] {
+		background: var(--accent-soft);
+		color: var(--accent-text);
 	}
 }
 
-/* --- Кнопки и формы ---------------------------------------------------- */
+/* --- Кнопки -------------------------------------------------------------- */
 
 .btn {
 	display: inline-flex;
@@ -151,29 +295,45 @@ a {
 	justify-content: center;
 	gap: 8px;
 	min-height: 48px;
-	padding: 10px 20px;
-	border-radius: var(--radius);
-	border: 1px solid var(--border);
+	padding: 10px 22px;
+	border-radius: 999px;
+	border: 1px solid var(--border-strong);
 	background: var(--surface);
 	color: var(--text);
 	font: inherit;
-	font-weight: 600;
+	font-weight: 650;
 	text-decoration: none;
 	cursor: pointer;
+	transition: transform 0.12s ease, box-shadow 0.15s ease, background 0.15s ease,
+		border-color 0.15s ease;
 }
 
 .btn:hover {
 	border-color: var(--accent);
+	box-shadow: var(--shadow-sm);
+}
+
+.btn:active {
+	transform: translateY(1px);
 }
 
 .btn--primary {
 	background: var(--accent);
 	border-color: var(--accent);
 	color: #fff;
+	box-shadow: var(--shadow-sm);
 }
 
 .btn--primary:hover {
-	background: var(--accent-dark);
+	background: var(--accent-hover);
+	border-color: var(--accent-hover);
+	box-shadow: var(--shadow-md);
+}
+
+@media (prefers-color-scheme: dark) {
+	.btn--primary {
+		color: #1a1008;
+	}
 }
 
 .btn--wide {
@@ -181,36 +341,47 @@ a {
 }
 
 .btn:disabled {
-	opacity: 0.55;
+	opacity: 0.5;
 	cursor: default;
+	transform: none;
 }
 
 .btn--link {
-	min-height: 0;
-	padding: 0;
+	min-height: 44px;
+	padding: 0 8px;
 	border: 0;
 	background: none;
-	color: var(--accent-dark);
-	text-decoration: underline;
-	font-weight: 500;
+	color: var(--muted);
+	text-decoration: none;
+	font-weight: 600;
+	font-size: 0.9rem;
+	border-radius: 8px;
 }
 
+.btn--link:hover {
+	color: var(--accent-text);
+	background: var(--bg-soft);
+	box-shadow: none;
+}
+
+/* --- Формы --------------------------------------------------------------- */
+
 .field {
-	margin-bottom: 20px;
+	margin-bottom: 22px;
 }
 
 .field label,
 .field legend,
 .field > .field-label {
 	display: block;
-	font-weight: 600;
-	margin-bottom: 6px;
+	font-weight: 650;
+	margin-bottom: 7px;
 }
 
 .field-hint {
-	font-size: 0.85rem;
+	font-size: 0.875rem;
 	color: var(--muted);
-	margin: -2px 0 8px;
+	margin: -3px 0 9px;
 }
 
 input[type='text'],
@@ -221,18 +392,33 @@ input[type='file'],
 select,
 textarea {
 	width: 100%;
-	min-height: 48px;
-	padding: 10px 12px;
+	min-height: 52px;
+	padding: 12px 15px;
 	font: inherit;
 	color: var(--text);
 	background: var(--surface);
-	border: 1px solid var(--border);
+	border: 1.5px solid var(--border);
 	border-radius: var(--radius);
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+	color: color-mix(in srgb, var(--muted) 72%, transparent);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+	outline: none;
+	border-color: var(--accent);
+	box-shadow: 0 0 0 4px var(--accent-soft);
 }
 
 textarea {
-	min-height: 140px;
+	min-height: 150px;
 	resize: vertical;
+	line-height: 1.6;
 }
 
 input:focus-visible,
@@ -246,11 +432,12 @@ a:focus-visible {
 
 .required {
 	color: var(--warn);
-	font-weight: 500;
-	font-size: 0.85rem;
+	font-weight: 600;
+	font-size: 0.8rem;
+	text-transform: lowercase;
 }
 
-/* --- Карточки и ленты --------------------------------------------------- */
+/* --- Карточки ------------------------------------------------------------ */
 
 .cards {
 	display: grid;
@@ -261,44 +448,104 @@ a:focus-visible {
 	list-style: none;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 620px) {
 	.cards {
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 	}
 }
 
 .card {
+	position: relative;
 	display: block;
+	height: 100%;
 	background: var(--surface);
 	border: 1px solid var(--border);
-	border-radius: var(--radius);
-	padding: 16px;
+	border-radius: var(--radius-lg);
+	padding: 20px;
 	text-decoration: none;
 	color: inherit;
+	box-shadow: var(--shadow-sm);
+	transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 }
 
 a.card:hover {
+	transform: translateY(-3px);
 	border-color: var(--accent);
+	box-shadow: var(--shadow-lg);
+}
+
+a.card:active {
+	transform: translateY(-1px);
+}
+
+.card h3 {
+	letter-spacing: -0.01em;
 }
 
 .card__meta {
 	color: var(--muted);
-	font-size: 0.9rem;
+	font-size: 0.875rem;
+	margin-bottom: 0;
 }
 
+/* Имя носителя — не подпись мелким шрифтом, а вторая по важности строка
+   на карточке после названия: материал принадлежит человеку. */
 .card__carrier {
-	font-weight: 600;
-	color: var(--accent-dark);
+	font-weight: 650;
+	color: var(--accent-text);
+	margin-bottom: 4px;
 }
+
+/* Кружок с иконкой типа наследия и кружок с инициалом человека — карточке
+   нужен зрительный якорь, иначе лента читается как список строк. */
+.card__icon,
+.avatar {
+	width: 46px;
+	height: 46px;
+	flex: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 14px;
+	font-size: 1.35rem;
+	line-height: 1;
+	background: var(--accent-soft);
+	color: var(--accent-text);
+}
+
+.avatar {
+	border-radius: 50%;
+	font-size: 1.15rem;
+	font-weight: 700;
+	background: var(--second-soft);
+	color: var(--second);
+}
+
+.card__head {
+	display: flex;
+	align-items: flex-start;
+	gap: 14px;
+	margin-bottom: 12px;
+}
+
+.card__head-text {
+	min-width: 0;
+	flex: 1;
+}
+
+/* --- Метки --------------------------------------------------------------- */
 
 .badge {
-	display: inline-block;
-	padding: 3px 10px;
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	padding: 4px 12px;
 	border-radius: 999px;
 	font-size: 0.8rem;
-	font-weight: 600;
+	font-weight: 700;
+	letter-spacing: 0.01em;
 	background: var(--accent-soft);
-	color: var(--accent-dark);
+	color: var(--accent-text);
 }
 
 .badge--ok {
@@ -314,26 +561,27 @@ a.card:hover {
 .tags {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 6px;
-	margin-top: 8px;
+	gap: 7px;
+	margin-top: 12px;
 }
 
 .tag {
 	font-size: 0.8rem;
-	padding: 2px 8px;
+	padding: 3px 11px;
 	border: 1px solid var(--border);
 	border-radius: 999px;
 	color: var(--muted);
+	background: var(--bg-soft);
 }
 
-/* --- Фильтры ------------------------------------------------------------ */
+/* --- Фильтры ------------------------------------------------------------- */
 
 .filters {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 8px;
+	gap: 10px;
 	align-items: flex-end;
-	margin-bottom: 20px;
+	margin-bottom: 18px;
 }
 
 .filters__search {
@@ -344,75 +592,127 @@ a.card:hover {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 8px;
-	margin-bottom: 16px;
+	margin-bottom: 18px;
 }
 
 .chip {
 	display: inline-flex;
 	align-items: center;
-	min-height: 40px;
-	padding: 4px 14px;
-	border: 1px solid var(--border);
+	min-height: 44px;
+	padding: 4px 16px;
+	border: 1.5px solid var(--border);
 	border-radius: 999px;
 	background: var(--surface);
 	color: var(--text);
 	text-decoration: none;
 	font-size: 0.95rem;
+	font-weight: 600;
+	transition: all 0.15s ease;
+}
+
+.chip:hover {
+	border-color: var(--accent);
+	color: var(--accent-text);
 }
 
 .chip[aria-current='true'] {
 	background: var(--accent);
 	border-color: var(--accent);
 	color: #fff;
-	font-weight: 600;
 }
 
-/* --- Счётчики на главной ------------------------------------------------ */
+@media (prefers-color-scheme: dark) {
+	.chip[aria-current='true'] {
+		color: #1a1008;
+	}
+}
+
+/* --- Главная: обложка и счётчики ----------------------------------------- */
+
+.hero {
+	position: relative;
+	margin-bottom: 32px;
+	padding: 36px 26px 32px;
+	border-radius: 26px;
+	background:
+		radial-gradient(120% 140% at 0% 0%, var(--accent-soft) 0%, transparent 58%),
+		radial-gradient(120% 140% at 100% 100%, var(--second-soft) 0%, transparent 55%),
+		var(--surface);
+	border: 1px solid var(--border);
+	overflow: hidden;
+}
+
+.hero h1 {
+	max-width: 18ch;
+}
+
+.hero .lead {
+	margin-bottom: 0;
+	color: var(--text);
+	opacity: 0.82;
+}
+
+.hero__accent {
+	color: var(--accent-text);
+}
 
 .counters {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	gap: 8px;
-	margin: 24px 0;
+	gap: 10px;
+	margin: 0 0 32px;
 }
 
 .counter {
 	background: var(--surface);
 	border: 1px solid var(--border);
-	border-radius: var(--radius);
-	padding: 14px 10px;
+	border-radius: var(--radius-lg);
+	padding: 18px 12px;
 	text-align: center;
+	box-shadow: var(--shadow-sm);
 }
 
 .counter__value {
 	display: block;
-	font-size: 2rem;
-	font-weight: 700;
-	color: var(--accent-dark);
-	line-height: 1.1;
+	font-size: clamp(1.9rem, 1.4rem + 2.4vw, 2.8rem);
+	font-weight: 800;
+	letter-spacing: -0.03em;
+	line-height: 1;
+	color: var(--accent-text);
+	font-variant-numeric: tabular-nums;
 }
 
 .counter__label {
-	font-size: 0.85rem;
+	display: block;
+	margin-top: 7px;
+	font-size: 0.8rem;
+	line-height: 1.3;
 	color: var(--muted);
 }
 
-/* --- Прочее ------------------------------------------------------------- */
+/* --- Состояния ----------------------------------------------------------- */
 
 .empty {
-	background: var(--surface);
-	border: 1px dashed var(--border);
-	border-radius: var(--radius);
-	padding: 24px;
+	background: var(--surface-2);
+	border: 1.5px dashed var(--border-strong);
+	border-radius: var(--radius-lg);
+	padding: 32px 24px;
 	text-align: center;
 	color: var(--muted);
 }
 
+.empty p {
+	max-width: 46ch;
+	margin: 0 auto 16px;
+}
+
 .notice {
 	background: var(--accent-soft);
+	color: var(--text);
 	border-radius: var(--radius);
-	padding: 14px 16px;
+	padding: 14px 18px;
 	margin-bottom: 20px;
+	font-size: 0.95rem;
 }
 
 .notice--error {
@@ -432,23 +732,28 @@ a.card:hover {
 	align-items: center;
 }
 
-.media {
-	width: 100%;
-	border-radius: var(--radius);
-	background: #000;
-}
-
-img.media {
-	background: var(--accent-soft);
-	height: auto;
-}
-
 .page-actions {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 12px;
-	margin-bottom: 24px;
+	margin-bottom: 28px;
 }
+
+/* --- Медиа --------------------------------------------------------------- */
+
+.media {
+	width: 100%;
+	border-radius: var(--radius-lg);
+	background: #000;
+	box-shadow: var(--shadow-md);
+}
+
+img.media {
+	background: var(--bg-soft);
+	height: auto;
+}
+
+/* --- Мелочи -------------------------------------------------------------- */
 
 .visually-hidden {
 	position: absolute;
@@ -457,4 +762,44 @@ img.media {
 	overflow: hidden;
 	clip: rect(0 0 0 0);
 	white-space: nowrap;
+}
+
+/* Карточки появляются лёгкой волной — движение живое, но короткое:
+   на слабых телефонах длинные анимации читаются как тормоза. */
+@keyframes rise {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+.cards > li {
+	animation: rise 0.32s ease both;
+}
+
+.cards > li:nth-child(2) {
+	animation-delay: 0.04s;
+}
+.cards > li:nth-child(3) {
+	animation-delay: 0.08s;
+}
+.cards > li:nth-child(4) {
+	animation-delay: 0.12s;
+}
+.cards > li:nth-child(n + 5) {
+	animation-delay: 0.16s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
 }
