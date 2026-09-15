@@ -282,6 +282,20 @@ a {
 	background: var(--accent-soft);
 }
 
+/* Переключатель языка стоит в той же панели, но не растягивается
+   наравне с пунктами навигации — это не пятый раздел сайта. */
+.nav .lang-switch {
+	flex: none;
+	align-self: center;
+	margin-left: 6px;
+}
+
+.nav .lang-switch button {
+	min-width: 36px;
+	min-height: 40px;
+	padding: 0 8px;
+}
+
 @media (min-width: 760px) {
 	/* места хватает — пусть лучше навигация перенесётся на вторую строку,
 	   чем что-то уедет за край */

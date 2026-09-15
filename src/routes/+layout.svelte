@@ -28,31 +28,6 @@
 		</a>
 
 		<div class="site-header__actions">
-			<!--
-				Выбор языка виден сразу и показывает оба варианта: переключатель
-				с одной надписью на чужом языке человек не опознаёт как переключатель.
-				Обычная форма — работает и без JS.
-			-->
-			<form method="POST" action="/lang" class="lang-switch" aria-label={$t('lang.label')}>
-				<input type="hidden" name="redirectTo" value={path + $page.url.search} />
-				<button
-					type="submit"
-					name="lang"
-					value="ru"
-					aria-current={$lang === 'ru' ? 'true' : undefined}
-				>
-					РУ
-				</button>
-				<button
-					type="submit"
-					name="lang"
-					value="tg"
-					aria-current={$lang === 'tg' ? 'true' : undefined}
-				>
-					ТҶ
-				</button>
-			</form>
-
 			{#if loggedIn}
 				<form method="POST" action="/auth/logout">
 					<button class="btn btn--sm" type="submit">{$t('nav.logout')}</button>
@@ -80,6 +55,32 @@
 				<Icon name="tasks" />
 				{$t('nav.tasks')}
 			</a>
+
+			<!--
+				Выбор языка живёт здесь же, в панели навигации: в шапке его
+				не находили. Оба языка показаны сразу — переключатель с одной
+				надписью на чужом языке не опознаётся как переключатель.
+				Обычная форма, работает и без JS.
+			-->
+			<form method="POST" action="/lang" class="lang-switch" aria-label={$t('lang.label')}>
+				<input type="hidden" name="redirectTo" value={path + $page.url.search} />
+				<button
+					type="submit"
+					name="lang"
+					value="ru"
+					aria-current={$lang === 'ru' ? 'true' : undefined}
+				>
+					РУ
+				</button>
+				<button
+					type="submit"
+					name="lang"
+					value="tg"
+					aria-current={$lang === 'tg' ? 'true' : undefined}
+				>
+					ТҶ
+				</button>
+			</form>
 		</nav>
 	</div>
 </header>
