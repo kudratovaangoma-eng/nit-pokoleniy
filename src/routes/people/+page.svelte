@@ -33,10 +33,8 @@
 <FilterChips param="skill" options={skillOptions} current={data.skill} />
 
 {#if data.loadError}
-	<p class="notice notice--error">{$t('common.error')}. {$t('common.tryAgain')}</p>
-{/if}
-
-{#if data.people.length === 0}
+	<p class="notice notice--error">{$t('common.loadFailed')}</p>
+{:else if data.people.length === 0}
 	<EmptyState
 		text={data.q || data.role || data.skill ? $t('people.emptyFiltered') : $t('people.empty')}
 		actionHref={data.q || data.role || data.skill ? '' : '/people/new'}

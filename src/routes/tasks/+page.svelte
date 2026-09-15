@@ -22,11 +22,13 @@
 </div>
 
 {#if data.loadError}
-	<p class="notice notice--error">{$t('common.error')}. {$t('common.tryAgain')}</p>
+	<p class="notice notice--error">{$t('common.loadFailed')}</p>
 {/if}
 
 <h2>{$t('tasks.openSection')}</h2>
-{#if data.openTasks.length === 0}
+{#if data.loadError}
+	<!-- молчим про «дел нет»: мы этого не знаем, лента не загрузилась -->
+{:else if data.openTasks.length === 0}
 	<EmptyState text={$t('tasks.empty')} actionHref="/tasks/new" actionLabel={$t('tasks.add')} />
 {:else}
 	<ul class="cards">

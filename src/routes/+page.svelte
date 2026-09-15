@@ -13,6 +13,10 @@
 <h1>{$t('site.name')}</h1>
 <p class="lead">{$t('home.lead')}</p>
 
+{#if data.loadError}
+	<p class="notice notice--error">{$t('common.loadFailed')}</p>
+{/if}
+
 <!-- Счётчики стоят выше всего остального: человеку, которого позвали
      «сохранять культуру», нужно сразу увидеть, что дело уже идёт -->
 <div class="counters">
@@ -33,7 +37,9 @@
 <p class="notice">{$t('home.startHere')}</p>
 
 <h2>{$t('home.openTasks')}</h2>
-{#if data.openTasks.length === 0}
+{#if data.loadError}
+	<p class="muted">{$t('common.loadFailedShort')}</p>
+{:else if data.openTasks.length === 0}
 	<p class="muted">{$t('tasks.empty')}</p>
 	<a class="btn btn--primary" href="/tasks/new">{$t('tasks.add')}</a>
 {:else}
@@ -54,7 +60,9 @@
 {/if}
 
 <h2>{$t('home.latestRecords')}</h2>
-{#if data.latestRecords.length === 0}
+{#if data.loadError}
+	<p class="muted">{$t('common.loadFailedShort')}</p>
+{:else if data.latestRecords.length === 0}
 	<p class="muted">{$t('archive.empty')}</p>
 	<a class="btn" href="/archive/new">{$t('archive.add')}</a>
 {:else}

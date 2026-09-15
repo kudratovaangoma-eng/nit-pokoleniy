@@ -19,6 +19,9 @@ export const load: PageServerLoad = async ({ locals }) => {
 	]);
 
 	return {
+		// Счётчики — обещание, что дело идёт. Ноль из-за сбоя связи и честный
+		// ноль в начале пути — разные вещи, и человеку их нельзя путать.
+		loadError: Boolean(records.error || people.error || doneTasks.error || latest.error || open.error),
 		counts: {
 			records: records.count ?? 0,
 			people: people.count ?? 0,

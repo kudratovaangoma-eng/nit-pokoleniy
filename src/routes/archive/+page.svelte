@@ -46,11 +46,11 @@
 
 <FilterChips param="type" options={typeOptions} current={data.type} />
 
+<!-- Если лента не загрузилась, нельзя писать «ничего не нашлось»: человек
+     решит, что фильтр отработал и записей просто нет. -->
 {#if data.loadError}
-	<p class="notice notice--error">{$t('common.error')}. {$t('common.tryAgain')}</p>
-{/if}
-
-{#if data.records.length === 0}
+	<p class="notice notice--error">{$t('common.loadFailed')}</p>
+{:else if data.records.length === 0}
 	<EmptyState
 		text={data.q || data.type ? $t('archive.emptyFiltered') : $t('archive.empty')}
 		actionHref={data.q || data.type ? '' : '/archive/new'}
