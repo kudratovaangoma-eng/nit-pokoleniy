@@ -151,12 +151,35 @@ h1 {
 	margin: 0 0 12px;
 }
 
+/* Сайт называется «Нить поколений», поэтому нить проходит через него
+   насквозь: у каждого заголовка раздела — узелок, от которого она тянется
+   к словам. Рисуется фоном, без лишней разметки. */
 h2 {
+	display: flex;
+	align-items: center;
+	gap: 12px;
 	font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.55rem);
 	line-height: 1.25;
 	letter-spacing: -0.02em;
 	font-weight: 700;
-	margin: 40px 0 16px;
+	margin: 44px 0 18px;
+}
+
+h2::before {
+	content: '';
+	flex: none;
+	width: 34px;
+	height: 9px;
+	opacity: 0.45;
+	background:
+		radial-gradient(circle 4.5px at 4.5px 4.5px, currentColor 96%, transparent 100%),
+		linear-gradient(currentColor, currentColor) 11px 3.5px / 23px 2px no-repeat;
+}
+
+/* В коротких заголовках внутри карточек нить неуместна */
+.card h2::before,
+.about__title::before {
+	display: none;
 }
 
 h3 {
@@ -924,9 +947,27 @@ a.card:active {
 
 @media (min-width: 640px) {
 	.about {
+		position: relative;
 		grid-template-columns: repeat(3, 1fr);
 		gap: 26px;
 	}
+
+	/* Та же нить связывает три звена работы: сохраняем — находим друг
+	   друга — делаем. Значки перекрывают её своим фоном. */
+	.about::before {
+		content: '';
+		position: absolute;
+		left: 19px;
+		right: 19px;
+		top: 19px;
+		height: 2px;
+		border-radius: 2px;
+		background: var(--border-strong);
+	}
+}
+
+.about__item {
+	position: relative;
 }
 
 .about__icon {
@@ -1085,24 +1126,44 @@ a.card:active {
 	margin-top: auto;
 }
 
+/* Счётчики нанизаны на нить, как бусины: линия идёт за числами, а числа
+   перекрывают её фоном страницы — получается узел на нити, а не три
+   отдельные плашки. */
 .counters {
+	position: relative;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 10px;
-	margin: 0 0 32px;
+	margin: 4px 0 36px;
+}
+
+.counters::before {
+	content: '';
+	position: absolute;
+	left: 14%;
+	right: 14%;
+	top: 30px;
+	height: 2px;
+	border-radius: 2px;
+	background: var(--border-strong);
+}
+
+@media (min-width: 640px) {
+	.counters::before {
+		top: 34px;
+	}
 }
 
 .counter {
-	background: var(--surface);
-	border: 1px solid var(--border);
-	border-radius: var(--radius-lg);
-	padding: 18px 12px;
+	position: relative;
+	padding: 6px 4px 0;
 	text-align: center;
-	box-shadow: var(--shadow-sm);
 }
 
 .counter__value {
-	display: block;
+	display: inline-block;
+	padding: 0 10px;
+	background: var(--bg);
 	font-family: var(--font-display);
 	font-size: clamp(1.75rem, 1.3rem + 2.2vw, 2.6rem);
 	font-weight: 700;
