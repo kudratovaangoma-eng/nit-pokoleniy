@@ -954,6 +954,94 @@ a.card:active {
 	margin: 0;
 }
 
+/* --- Главная: поиск и разделы ------------------------------------------- */
+
+/*
+ * Поиск стоит выше лент: человек приходит послушать конкретную песню или
+ * найти своего носителя, а не листать всё подряд.
+ */
+.find {
+	margin: 0 0 32px;
+}
+
+.find__label {
+	display: block;
+	font-weight: 700;
+	margin-bottom: 8px;
+}
+
+.find__row {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+.find__row input {
+	flex: 1;
+	min-width: 0;
+}
+
+.find__row .btn {
+	flex: none;
+}
+
+.types {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 12px;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+@media (min-width: 700px) {
+	.types {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+/* Плитка раздела: крупная цель, цвет своего типа наследия, счётчик внизу.
+   Высота одинаковая у всех — иначе ряд «пляшет». */
+.type-tile {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 2px;
+	height: 100%;
+	min-height: 104px;
+	padding: 14px 16px;
+	border-radius: var(--radius-lg);
+	border: 1.5px solid var(--border);
+	background: var(--type-soft, var(--accent-soft));
+	color: var(--text);
+	text-decoration: none;
+	transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.type-tile:hover {
+	transform: translateY(-2px);
+	border-color: var(--type, var(--accent));
+	box-shadow: var(--shadow-md);
+}
+
+.type-tile__icon {
+	font-size: 1.5rem;
+	line-height: 1.2;
+	margin-bottom: 4px;
+}
+
+.type-tile__name {
+	font-weight: 700;
+	letter-spacing: -0.015em;
+	color: var(--type, var(--accent-text));
+}
+
+.type-tile__count {
+	font-size: 0.8rem;
+	color: var(--muted);
+	margin-top: auto;
+}
+
 .counters {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);

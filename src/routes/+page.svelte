@@ -2,6 +2,14 @@
 	import Icon from '$lib/components/Icon.svelte';
 	import TaskCard from '$lib/components/TaskCard.svelte';
 	import { lang, plural, t } from '$lib/i18n';
+	import { HERITAGE_TYPES } from '$lib/types';
+
+	const ICONS: Record<string, string> = {
+		song: '🎵',
+		ritual: '🕯️',
+		craft: '🧵',
+		oral_history: '🗣️'
+	};
 
 	let { data } = $props();
 </script>
@@ -39,6 +47,39 @@
 		<h2 class="about__title">{$t('about.tasks.title')}</h2>
 		<p class="about__text">{$t('about.tasks.text')}</p>
 	</div>
+</section>
+
+<section class="find">
+	<form method="GET" action="/archive" class="find__form" role="search">
+		<label class="find__label" for="home-q">{$t('home.searchLabel')}</label>
+		<div class="find__row">
+			<input
+				id="home-q"
+				name="q"
+				type="search"
+				placeholder={$t('archive.searchPlaceholder')}
+				enterkeyhint="search"
+			/>
+			<button class="btn btn--primary" type="submit">{$t('common.find')}</button>
+		</div>
+	</form>
+
+	<!-- Крупные входы в разделы архива: число под названием сразу показывает,
+	     где уже есть что послушать, а где пока пусто. -->
+	<ul class="types">
+		{#each HERITAGE_TYPES as type (type)}
+			<li>
+				<a class="type-tile type-{type}" href="/archive?type={type}">
+					<span class="type-tile__icon" aria-hidden="true">{ICONS[type]}</span>
+					<span class="type-tile__name">{$t(`heritage.${type}`)}</span>
+					<span class="type-tile__count">
+						{data.typeCounts[type]}
+						{plural($lang, data.typeCounts[type], 'home.counters.records')}
+					</span>
+				</a>
+			</li>
+		{/each}
+	</ul>
 </section>
 
 {#if data.loadError}
