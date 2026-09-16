@@ -2,14 +2,8 @@
 	import Icon from '$lib/components/Icon.svelte';
 	import TaskCard from '$lib/components/TaskCard.svelte';
 	import { lang, plural, t } from '$lib/i18n';
+	import TypeIcon from '$lib/components/TypeIcon.svelte';
 	import { HERITAGE_TYPES } from '$lib/types';
-
-	const ICONS: Record<string, string> = {
-		song: '🎵',
-		ritual: '🕯️',
-		craft: '🧵',
-		oral_history: '🗣️'
-	};
 
 	let { data } = $props();
 </script>
@@ -70,7 +64,7 @@
 		{#each HERITAGE_TYPES as type (type)}
 			<li>
 				<a class="type-tile type-{type}" href="/archive?type={type}">
-					<span class="type-tile__icon" aria-hidden="true">{ICONS[type]}</span>
+					<span class="type-tile__icon"><TypeIcon {type} size={30} /></span>
 					<span class="type-tile__name">{$t(`heritage.${type}`)}</span>
 					<span class="type-tile__count">
 						{data.typeCounts[type]}

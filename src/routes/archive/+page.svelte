@@ -1,17 +1,11 @@
 <script lang="ts">
 	import EmptyState from '$lib/components/EmptyState.svelte';
 	import FilterChips from '$lib/components/FilterChips.svelte';
+	import TypeIcon from '$lib/components/TypeIcon.svelte';
 	import { formatDate, lang, t } from '$lib/i18n';
 	import { HERITAGE_TYPES, subtypesOf, type HeritageType } from '$lib/types';
 
 	let { data } = $props();
-
-	const ICONS: Record<string, string> = {
-		song: '🎵',
-		ritual: '🕯️',
-		craft: '🧵',
-		oral_history: '🗣️'
-	};
 
 	let typeOptions = $derived(
 		HERITAGE_TYPES.map((value) => ({ value, label: $t(`heritage.${value}`) }))
@@ -80,7 +74,7 @@
 			<li>
 				<a class="card card--typed type-{record.type}" href="/archive/{record.id}">
 					<div class="card__head">
-						<span class="card__icon" aria-hidden="true">{ICONS[record.type]}</span>
+						<span class="card__icon"><TypeIcon type={record.type} size={24} /></span>
 						<div class="card__head-text">
 							<span class="badge">{$t(`heritage.${record.type}`)}</span>
 							{#if record.subtype}

@@ -1025,9 +1025,9 @@ a.card:active {
 }
 
 .type-tile__icon {
-	font-size: 1.5rem;
-	line-height: 1.2;
-	margin-bottom: 4px;
+	display: inline-flex;
+	color: var(--type, var(--accent));
+	margin-bottom: 6px;
 }
 
 .type-tile__name {
