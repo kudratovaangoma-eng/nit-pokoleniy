@@ -17,34 +17,35 @@
 :root {
 	color-scheme: light dark;
 
-	--bg: #fbf8f4;
-	--bg-soft: #f4ede3;
+	--bg: #f6f9fd;
+	--bg-soft: #eaf1fa;
 	--surface: #ffffff;
-	--surface-2: #fdfaf6;
-	--text: #1a1410;
-	--muted: #6b5d4f;
-	--border: #e7dccc;
-	--border-strong: #d6c6b0;
+	--surface-2: #fbfdff;
+	--text: #0f1b2d;
+	--muted: #5a6b84;
+	--border: #dbe5f2;
+	--border-strong: #bfd0e6;
 
 	/* Терракота — цвет обожжённой глины и шафрана; second — холодный
 	   контрапункт, чтобы страница не выглядела музейной витриной */
-	--accent: #c2410c;
-	--accent-hover: #9a3412;
-	--accent-soft: #fdecd8;
-	--accent-text: #9a3412;
-	--second: #0f766e;
-	--second-soft: #d9f2ee;
+	--accent: #1d4ed8;
+	--accent-hover: #1e40af;
+	--accent-soft: #e2ebff;
+	--accent-text: #1e40af;
+	--second: #0891b2;
+	--second-soft: #dbf1f8;
 
-	/* Свой цвет каждому типу наследия: лента из четырёх цветов читается
-	   с одного взгляда, а песня и ремесло перестают сливаться. */
-	--type-song: #c2410c;
-	--type-song-soft: #fdecd8;
-	--type-ritual: #6d28d9;
-	--type-ritual-soft: #f0e9fd;
-	--type-craft: #15803d;
-	--type-craft-soft: #ddf3e3;
+	/* Свой оттенок каждому типу наследия — все в родственной гамме
+	   от синего к бирюзовому, поэтому лента остаётся единой, но песня
+	   и ремесло всё же различимы. */
+	--type-song: #1d4ed8;
+	--type-song-soft: #e2ebff;
+	--type-ritual: #4f46e5;
+	--type-ritual-soft: #e8e7fd;
+	--type-craft: #0891b2;
+	--type-craft-soft: #dbf1f8;
 	--type-oral_history: #0f766e;
-	--type-oral_history-soft: #d9f2ee;
+	--type-oral_history-soft: #d8f1ed;
 
 	--ok: #15803d;
 	--ok-soft: #dcfce7;
@@ -63,37 +64,37 @@
 	--gap: 16px;
 	--maxw: 960px;
 
-	--shadow-sm: 0 1px 2px rgba(26, 20, 16, 0.06), 0 1px 3px rgba(26, 20, 16, 0.04);
-	--shadow-md: 0 4px 12px rgba(26, 20, 16, 0.08), 0 2px 4px rgba(26, 20, 16, 0.04);
-	--shadow-lg: 0 12px 28px rgba(26, 20, 16, 0.12), 0 4px 8px rgba(26, 20, 16, 0.06);
+	--shadow-sm: 0 1px 2px rgba(15, 27, 45, 0.06), 0 1px 3px rgba(15, 27, 45, 0.04);
+	--shadow-md: 0 4px 12px rgba(15, 27, 45, 0.08), 0 2px 4px rgba(15, 27, 45, 0.04);
+	--shadow-lg: 0 12px 28px rgba(15, 27, 45, 0.12), 0 4px 8px rgba(15, 27, 45, 0.06);
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--bg: #12100e;
-		--bg-soft: #1a1613;
-		--surface: #1c1917;
-		--surface-2: #232019;
-		--text: #f5f0e8;
-		--muted: #b3a595;
-		--border: #332e28;
-		--border-strong: #4a423a;
+		--bg: #0a1220;
+		--bg-soft: #101c2f;
+		--surface: #132034;
+		--surface-2: #18273e;
+		--text: #e9eff8;
+		--muted: #94a7c0;
+		--border: #24354f;
+		--border-strong: #35496a;
 
-		--accent: #fb923c;
-		--accent-hover: #fdba74;
-		--accent-soft: #37220f;
-		--accent-text: #fdba74;
-		--second: #2dd4bf;
-		--second-soft: #10302c;
+		--accent: #60a5fa;
+		--accent-hover: #93c5fd;
+		--accent-soft: #152a4c;
+		--accent-text: #93c5fd;
+		--second: #22d3ee;
+		--second-soft: #0e2c38;
 
-		--type-song: #fb923c;
-		--type-song-soft: #37220f;
-		--type-ritual: #c4b5fd;
-		--type-ritual-soft: #241a3d;
-		--type-craft: #4ade80;
-		--type-craft-soft: #132c1c;
-		--type-oral_history: #2dd4bf;
-		--type-oral_history-soft: #10302c;
+		--type-song: #60a5fa;
+		--type-song-soft: #152a4c;
+		--type-ritual: #a5b4fc;
+		--type-ritual-soft: #1e1f45;
+		--type-craft: #22d3ee;
+		--type-craft-soft: #0e2c38;
+		--type-oral_history: #5eead4;
+		--type-oral_history-soft: #0d2e2a;
 
 		--ok: #4ade80;
 		--ok-soft: #14301d;
@@ -414,7 +415,7 @@ a {
 
 @media (prefers-color-scheme: dark) {
 	.btn--primary {
-		color: #1a1008;
+		color: #08111f;
 	}
 }
 
@@ -474,7 +475,7 @@ a {
 
 @media (prefers-color-scheme: dark) {
 	.lang-switch button[aria-current='true'] {
-		color: #1a1008;
+		color: #08111f;
 	}
 }
 
@@ -800,7 +801,7 @@ a.card:active {
 
 @media (prefers-color-scheme: dark) {
 	.chip[aria-current='true'] {
-		color: #1a1008;
+		color: #08111f;
 	}
 }
 
