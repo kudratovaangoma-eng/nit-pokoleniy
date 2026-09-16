@@ -807,9 +807,9 @@ a.card:active {
 /* --- Главная: обложка и счётчики ----------------------------------------- */
 
 /*
- * Обложка главной. В фоне шерози — памирская плетёнка, тот же орнамент,
- * что идёт по краю знака. Взят бледным: это фактура ткани, а не картинка
- * поверх текста.
+ * Обложка главной. Без орнамента в фоне — только мягкие пятна цвета
+ * и тёплая кайма по краю: узор здесь спорил с текстом, а весь орнамент
+ * проекта собран в знаке.
  */
 .hero {
 	position: relative;
@@ -817,7 +817,6 @@ a.card:active {
 	padding: 40px 28px 36px;
 	border-radius: 26px;
 	background:
-		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='22' viewBox='0 0 44 22'%3E%3Cg fill='none' stroke='%23c2410c' stroke-opacity='0.16' stroke-width='1.3' stroke-linecap='square'%3E%3Cpath d='M0 16L11 5L22 16L33 5L44 16'/%3E%3Cpath d='M0 6L11 17L22 6L33 17L44 6'/%3E%3C/g%3E%3C/svg%3E"),
 		radial-gradient(120% 140% at 0% 0%, var(--accent-soft) 0%, transparent 58%),
 		radial-gradient(120% 140% at 100% 100%, var(--second-soft) 0%, transparent 55%),
 		var(--surface);
