@@ -78,7 +78,7 @@
 	<ul class="cards">
 		{#each data.records as record (record.id)}
 			<li>
-				<a class="card" href="/archive/{record.id}">
+				<a class="card card--typed type-{record.type}" href="/archive/{record.id}">
 					<div class="card__head">
 						<span class="card__icon" aria-hidden="true">{ICONS[record.type]}</span>
 						<div class="card__head-text">

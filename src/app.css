@@ -35,6 +35,17 @@
 	--second: #0f766e;
 	--second-soft: #d9f2ee;
 
+	/* Свой цвет каждому типу наследия: лента из четырёх цветов читается
+	   с одного взгляда, а песня и ремесло перестают сливаться. */
+	--type-song: #c2410c;
+	--type-song-soft: #fdecd8;
+	--type-ritual: #6d28d9;
+	--type-ritual-soft: #f0e9fd;
+	--type-craft: #15803d;
+	--type-craft-soft: #ddf3e3;
+	--type-oral_history: #0f766e;
+	--type-oral_history-soft: #d9f2ee;
+
 	--ok: #15803d;
 	--ok-soft: #dcfce7;
 	--warn: #b91c1c;
@@ -74,6 +85,15 @@
 		--accent-text: #fdba74;
 		--second: #2dd4bf;
 		--second-soft: #10302c;
+
+		--type-song: #fb923c;
+		--type-song-soft: #37220f;
+		--type-ritual: #c4b5fd;
+		--type-ritual-soft: #241a3d;
+		--type-craft: #4ade80;
+		--type-craft-soft: #132c1c;
+		--type-oral_history: #2dd4bf;
+		--type-oral_history-soft: #10302c;
 
 		--ok: #4ade80;
 		--ok-soft: #14301d;
@@ -582,7 +602,7 @@ a:focus-visible {
 
 a.card:hover {
 	transform: translateY(-3px);
-	border-color: var(--accent);
+	border-color: var(--type, var(--accent));
 	box-shadow: var(--shadow-lg);
 }
 
@@ -604,8 +624,46 @@ a.card:active {
    на карточке после названия: материал принадлежит человеку. */
 .card__carrier {
 	font-weight: 650;
-	color: var(--accent-text);
+	color: var(--type, var(--accent-text));
 	margin-bottom: 4px;
+}
+
+/*
+ * Тип наследия задаёт карточке цвет: иконка, метка и полоса сверху берут
+ * его из --type. Ставится классом type-song / type-ritual / type-craft /
+ * type-oral_history; без него всё падает на основной акцент.
+ */
+.type-song {
+	--type: var(--type-song);
+	--type-soft: var(--type-song-soft);
+}
+.type-ritual {
+	--type: var(--type-ritual);
+	--type-soft: var(--type-ritual-soft);
+}
+.type-craft {
+	--type: var(--type-craft);
+	--type-soft: var(--type-craft-soft);
+}
+.type-oral_history {
+	--type: var(--type-oral_history);
+	--type-soft: var(--type-oral_history-soft);
+}
+
+/* Тонкая цветная полоса по верхнему краю — по ней лента читается,
+   даже когда глаз скользит мимо текста. */
+.card--typed::before {
+	content: '';
+	position: absolute;
+	inset: 0 0 auto;
+	height: 4px;
+	border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+	background: var(--type, var(--accent));
+}
+
+.card--typed {
+	padding-top: 24px;
+	overflow: hidden;
 }
 
 /* Кружок с иконкой типа наследия и кружок с инициалом человека — карточке
@@ -621,8 +679,8 @@ a.card:active {
 	border-radius: 14px;
 	font-size: 1.35rem;
 	line-height: 1;
-	background: var(--accent-soft);
-	color: var(--accent-text);
+	background: var(--type-soft, var(--accent-soft));
+	color: var(--type, var(--accent-text));
 }
 
 .avatar {
@@ -656,8 +714,8 @@ a.card:active {
 	font-size: 0.8rem;
 	font-weight: 700;
 	letter-spacing: 0.01em;
-	background: var(--accent-soft);
-	color: var(--accent-text);
+	background: var(--type-soft, var(--accent-soft));
+	color: var(--type, var(--accent-text));
 }
 
 /* Подраздел — уточнение к типу, поэтому тише основной метки */
@@ -748,17 +806,39 @@ a.card:active {
 
 /* --- Главная: обложка и счётчики ----------------------------------------- */
 
+/*
+ * Обложка главной. Восьмилучевая звезда в фоне — мотив, который живёт
+ * на сузани и чакане; взят бледным, чтобы читался как фактура ткани,
+ * а не как картинка поверх текста.
+ */
 .hero {
 	position: relative;
 	margin-bottom: 32px;
-	padding: 36px 26px 32px;
+	padding: 40px 28px 36px;
 	border-radius: 26px;
 	background:
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23c2410c' stroke-opacity='0.13' stroke-width='1.1'%3E%3Cpath d='M28 6l5.5 16.5L50 28l-16.5 5.5L28 50l-5.5-16.5L6 28l16.5-5.5z'/%3E%3Ccircle cx='28' cy='28' r='3'/%3E%3C/g%3E%3C/svg%3E"),
 		radial-gradient(120% 140% at 0% 0%, var(--accent-soft) 0%, transparent 58%),
 		radial-gradient(120% 140% at 100% 100%, var(--second-soft) 0%, transparent 55%),
 		var(--surface);
 	border: 1px solid var(--border);
 	overflow: hidden;
+}
+
+/* Тёплая полоса по верхнему краю обложки — как кайма на ткани */
+.hero::before {
+	content: '';
+	position: absolute;
+	inset: 0 0 auto;
+	height: 5px;
+	background: linear-gradient(90deg, var(--accent), var(--second));
+}
+
+.hero__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin-top: 24px;
 }
 
 .hero h1 {
@@ -768,7 +848,7 @@ a.card:active {
 .hero .lead {
 	margin-bottom: 0;
 	color: var(--text);
-	opacity: 0.82;
+	opacity: 0.84;
 }
 
 .hero__accent {

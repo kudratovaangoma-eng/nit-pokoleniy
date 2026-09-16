@@ -2,6 +2,7 @@
 	import '../app.css';
 	import { page } from '$app/stores';
 	import Icon from '$lib/components/Icon.svelte';
+	import Logo from '$lib/components/Logo.svelte';
 	import { lang, t } from '$lib/i18n';
 
 	let { data, children } = $props();
@@ -12,18 +13,7 @@
 <header class="site-header">
 	<div class="site-header__inner">
 		<a class="site-header__name" href="/">
-			<svg class="site-header__mark" viewBox="0 0 32 32" aria-hidden="true">
-				<rect width="32" height="32" rx="9" fill="var(--accent)" />
-				<path
-					d="M8 7C24 11 8 21 24 25"
-					fill="none"
-					stroke="var(--accent-soft)"
-					stroke-width="3"
-					stroke-linecap="round"
-				/>
-				<circle cx="8" cy="7" r="2.6" fill="var(--accent-soft)" />
-				<circle cx="24" cy="25" r="2.6" fill="var(--accent-soft)" />
-			</svg>
+			<Logo size={30} id="header" />
 			<span class="site-header__title">{$t('site.name')}</span>
 		</a>
 

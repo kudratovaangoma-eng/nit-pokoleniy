@@ -17,7 +17,7 @@
 
 <p><a class="btn--link" href="/archive">← {$t('archive.title')}</a></p>
 
-<div class="stack" style="gap: 8px">
+<div class="stack type-{record.type}" style="gap: 8px">
 	<span class="badge">{$t(`heritage.${record.type}`)}</span>
 	{#if record.subtype}
 		<a class="badge badge--soft" href="/archive?type={record.type}&subtype={record.subtype}">

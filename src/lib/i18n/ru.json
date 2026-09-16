@@ -39,6 +39,8 @@
 	"home.counters.done.one": "дело выполнено",
 	"home.counters.done.few": "дела выполнено",
 	"home.counters.done.many": "дел выполнено",
+	"home.ctaHelp": "Чем я могу помочь",
+	"home.ctaBrowse": "Смотреть архив",
 	"home.latestRecords": "Последние записи",
 	"home.openTasks": "Чем можно помочь прямо сейчас",
 	"home.seeAll": "Смотреть все",

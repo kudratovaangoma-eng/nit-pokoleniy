@@ -13,6 +13,13 @@
 <section class="hero">
 	<h1>{$t('home.heroBefore')} <span class="hero__accent">{$t('home.heroAccent')}</span></h1>
 	<p class="lead">{$t('home.lead')}</p>
+
+	<!-- Два входа в проект прямо с обложки: посмотреть, что уже собрано,
+	     и найти себе дело. Без них человек упирается в счётчики и уходит. -->
+	<div class="hero__actions">
+		<a class="btn btn--primary" href="/tasks">{$t('home.ctaHelp')}</a>
+		<a class="btn" href="/archive">{$t('home.ctaBrowse')}</a>
+	</div>
 </section>
 
 {#if data.loadError}
@@ -71,7 +78,7 @@
 	<ul class="cards">
 		{#each data.latestRecords as record (record.id)}
 			<li>
-				<a class="card" href="/archive/{record.id}">
+				<a class="card card--typed type-{record.type}" href="/archive/{record.id}">
 					<span class="badge">{$t(`heritage.${record.type}`)}</span>
 					<h3>{record.title}</h3>
 					<p class="card__carrier">{record.carrier_name}</p>
