@@ -807,9 +807,9 @@ a.card:active {
 /* --- Главная: обложка и счётчики ----------------------------------------- */
 
 /*
- * Обложка главной. Восьмилучевая звезда в фоне — мотив, который живёт
- * на сузани и чакане; взят бледным, чтобы читался как фактура ткани,
- * а не как картинка поверх текста.
+ * Обложка главной. В фоне шерози — памирская плетёнка, тот же орнамент,
+ * что идёт по краю знака. Взят бледным: это фактура ткани, а не картинка
+ * поверх текста.
  */
 .hero {
 	position: relative;
@@ -817,7 +817,7 @@ a.card:active {
 	padding: 40px 28px 36px;
 	border-radius: 26px;
 	background:
-		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23c2410c' stroke-opacity='0.13' stroke-width='1.1'%3E%3Cpath d='M28 6l5.5 16.5L50 28l-16.5 5.5L28 50l-5.5-16.5L6 28l16.5-5.5z'/%3E%3Ccircle cx='28' cy='28' r='3'/%3E%3C/g%3E%3C/svg%3E"),
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='22' viewBox='0 0 44 22'%3E%3Cg fill='none' stroke='%23c2410c' stroke-opacity='0.16' stroke-width='1.3' stroke-linecap='square'%3E%3Cpath d='M0 16L11 5L22 16L33 5L44 16'/%3E%3Cpath d='M0 6L11 17L22 6L33 17L44 6'/%3E%3C/g%3E%3C/svg%3E"),
 		radial-gradient(120% 140% at 0% 0%, var(--accent-soft) 0%, transparent 58%),
 		radial-gradient(120% 140% at 100% 100%, var(--second-soft) 0%, transparent 55%),
 		var(--surface);
