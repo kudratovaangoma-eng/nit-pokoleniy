@@ -24,8 +24,8 @@
 >
 	<defs>
 		<linearGradient id="{id}-bg" x1="0" y1="0" x2="1" y2="1">
-			<stop offset="0" stop-color="#3b82f6" />
-			<stop offset="1" stop-color="#1e3a8a" />
+			<stop offset="0" stop-color="#38bdf8" />
+			<stop offset="1" stop-color="#075985" />
 		</linearGradient>
 	</defs>
 
@@ -34,13 +34,13 @@
 	<!-- шерози: плетёный зигзаг по краю -->
 	<path
 		d="M2.80 2.80L8.03 4.05L11.60 2.80L16.00 4.30L20.40 2.80L23.97 4.05L29.20 2.80L27.95 8.03L29.20 11.60L27.70 16.00L29.20 20.40L27.95 23.97L29.20 29.20L23.97 27.95L20.40 29.20L16.00 27.70L11.60 29.20L8.03 27.95L2.80 29.20L4.05 23.97L2.80 20.40L4.30 16.00L2.80 11.60L4.05 8.03Z"
-		stroke="#eff6ff"
+		stroke="#f0f9ff"
 		stroke-width="0.9"
 		opacity="0.5"
 	/>
 
 	<!-- чорхона: четыре венца, каждый повёрнут на 45° -->
-	<g stroke="#eff6ff" stroke-linejoin="round">
+	<g stroke="#f0f9ff" stroke-linejoin="round">
 		<rect x="4.80" y="4.80" width="22.40" height="22.40" rx="1.4" stroke-width="1.6" />
 		<rect
 			x="8.08"
@@ -64,5 +64,5 @@
 	</g>
 
 	<!-- руз: свет, падающий в дом сверху -->
-	<rect x="13.6" y="13.6" width="4.8" height="4.8" rx="1" fill="#eff6ff" />
+	<rect x="13.6" y="13.6" width="4.8" height="4.8" rx="1" fill="#f0f9ff" />
 </svg>

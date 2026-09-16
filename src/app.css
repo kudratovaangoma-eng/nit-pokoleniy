@@ -17,35 +17,36 @@
 :root {
 	color-scheme: light dark;
 
-	--bg: #f6f9fd;
-	--bg-soft: #eaf1fa;
+	--bg: #f3fafe;
+	--bg-soft: #e4f2fb;
 	--surface: #ffffff;
-	--surface-2: #fbfdff;
-	--text: #0f1b2d;
-	--muted: #5a6b84;
-	--border: #dbe5f2;
-	--border-strong: #bfd0e6;
+	--surface-2: #f9fdff;
+	--text: #0c1e2c;
+	--muted: #52687b;
+	--border: #d2e7f4;
+	--border-strong: #b0d4e9;
 
 	/* Терракота — цвет обожжённой глины и шафрана; second — холодный
 	   контрапункт, чтобы страница не выглядела музейной витриной */
-	--accent: #1d4ed8;
-	--accent-hover: #1e40af;
-	--accent-soft: #e2ebff;
-	--accent-text: #1e40af;
-	--second: #0891b2;
-	--second-soft: #dbf1f8;
+	--accent: #0284c7;
+	--accent-strong: #0378b4;
+	--accent-hover: #0369a1;
+	--accent-soft: #e0f2fe;
+	--accent-text: #0369a1;
+	--second: #0d9488;
+	--second-soft: #d7f0ec;
 
 	/* Свой оттенок каждому типу наследия — все в родственной гамме
 	   от синего к бирюзовому, поэтому лента остаётся единой, но песня
 	   и ремесло всё же различимы. */
-	--type-song: #1d4ed8;
-	--type-song-soft: #e2ebff;
-	--type-ritual: #4f46e5;
-	--type-ritual-soft: #e8e7fd;
-	--type-craft: #0891b2;
-	--type-craft-soft: #dbf1f8;
-	--type-oral_history: #0f766e;
-	--type-oral_history-soft: #d8f1ed;
+	--type-song: #0284c7;
+	--type-song-soft: #e0f2fe;
+	--type-ritual: #6366f1;
+	--type-ritual-soft: #e8e9fe;
+	--type-craft: #0d9488;
+	--type-craft-soft: #d7f0ec;
+	--type-oral_history: #0891b2;
+	--type-oral_history-soft: #daf2f8;
 
 	--ok: #15803d;
 	--ok-soft: #dcfce7;
@@ -64,37 +65,38 @@
 	--gap: 16px;
 	--maxw: 960px;
 
-	--shadow-sm: 0 1px 2px rgba(15, 27, 45, 0.06), 0 1px 3px rgba(15, 27, 45, 0.04);
-	--shadow-md: 0 4px 12px rgba(15, 27, 45, 0.08), 0 2px 4px rgba(15, 27, 45, 0.04);
-	--shadow-lg: 0 12px 28px rgba(15, 27, 45, 0.12), 0 4px 8px rgba(15, 27, 45, 0.06);
+	--shadow-sm: 0 1px 2px rgba(8, 40, 60, 0.06), 0 1px 3px rgba(8, 40, 60, 0.04);
+	--shadow-md: 0 4px 12px rgba(8, 40, 60, 0.08), 0 2px 4px rgba(8, 40, 60, 0.04);
+	--shadow-lg: 0 12px 28px rgba(8, 40, 60, 0.12), 0 4px 8px rgba(8, 40, 60, 0.06);
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--bg: #0a1220;
-		--bg-soft: #101c2f;
-		--surface: #132034;
-		--surface-2: #18273e;
-		--text: #e9eff8;
-		--muted: #94a7c0;
-		--border: #24354f;
-		--border-strong: #35496a;
+		--bg: #07151f;
+		--bg-soft: #0d2130;
+		--surface: #0f2433;
+		--surface-2: #142c3d;
+		--text: #e6f1f8;
+		--muted: #8fa9bd;
+		--border: #1f3a4d;
+		--border-strong: #2f5166;
 
-		--accent: #60a5fa;
-		--accent-hover: #93c5fd;
-		--accent-soft: #152a4c;
-		--accent-text: #93c5fd;
-		--second: #22d3ee;
-		--second-soft: #0e2c38;
+		--accent: #38bdf8;
+		--accent-strong: #38bdf8;
+		--accent-hover: #7dd3fc;
+		--accent-soft: #0c2c42;
+		--accent-text: #7dd3fc;
+		--second: #2dd4bf;
+		--second-soft: #0b2f2c;
 
-		--type-song: #60a5fa;
-		--type-song-soft: #152a4c;
+		--type-song: #38bdf8;
+		--type-song-soft: #0c2c42;
 		--type-ritual: #a5b4fc;
-		--type-ritual-soft: #1e1f45;
-		--type-craft: #22d3ee;
-		--type-craft-soft: #0e2c38;
-		--type-oral_history: #5eead4;
-		--type-oral_history-soft: #0d2e2a;
+		--type-ritual-soft: #1d2047;
+		--type-craft: #2dd4bf;
+		--type-craft-soft: #0b2f2c;
+		--type-oral_history: #67e8f9;
+		--type-oral_history-soft: #0a2b35;
 
 		--ok: #4ade80;
 		--ok-soft: #14301d;
@@ -401,8 +403,8 @@ a {
 }
 
 .btn--primary {
-	background: var(--accent);
-	border-color: var(--accent);
+	background: var(--accent-strong);
+	border-color: var(--accent-strong);
 	color: #fff;
 	box-shadow: var(--shadow-sm);
 }
@@ -415,7 +417,7 @@ a {
 
 @media (prefers-color-scheme: dark) {
 	.btn--primary {
-		color: #08111f;
+		color: #062130;
 	}
 }
 
@@ -469,13 +471,13 @@ a {
 }
 
 .lang-switch button[aria-current='true'] {
-	background: var(--accent);
+	background: var(--accent-strong);
 	color: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
 	.lang-switch button[aria-current='true'] {
-		color: #08111f;
+		color: #062130;
 	}
 }
 
@@ -591,6 +593,7 @@ a:focus-visible {
 	position: relative;
 	display: block;
 	height: 100%;
+	overflow: hidden;
 	background: var(--surface);
 	border: 1px solid var(--border);
 	border-radius: var(--radius-lg);
@@ -599,6 +602,30 @@ a:focus-visible {
 	color: inherit;
 	box-shadow: var(--shadow-sm);
 	transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+/* Ромб с рогами архара — мотив джурабов Бадахшана. В нижнем углу и почти
+   прозрачный: это фактура поверхности, а не картинка поверх текста. */
+.card::after {
+	content: '';
+	position: absolute;
+	right: -10px;
+	bottom: -12px;
+	width: 92px;
+	height: 92px;
+	pointer-events: none;
+	background-color: var(--type, var(--accent));
+	-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46' height='46' viewBox='0 0 46 46'%3E%3Cg fill='none' stroke='%23000' stroke-width='2'%3E%3Cpath d='M23 6L40 23L23 40L6 23Z'/%3E%3Cpath d='M23 14L32 23L23 32L14 23Z'/%3E%3Cpath d='M23 6c-4-4-9-4-11-1M23 6c4-4 9-4 11-1'/%3E%3C/g%3E%3C/svg%3E");
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46' height='46' viewBox='0 0 46 46'%3E%3Cg fill='none' stroke='%23000' stroke-width='2'%3E%3Cpath d='M23 6L40 23L23 40L6 23Z'/%3E%3Cpath d='M23 14L32 23L23 32L14 23Z'/%3E%3Cpath d='M23 6c-4-4-9-4-11-1M23 6c4-4 9-4 11-1'/%3E%3C/g%3E%3C/svg%3E");
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-size: contain;
+	mask-size: contain;
+	opacity: 0.09;
+}
+
+a.card:hover::after {
+	opacity: 0.16;
 }
 
 a.card:hover {
@@ -651,20 +678,48 @@ a.card:active {
 	--type-soft: var(--type-oral_history-soft);
 }
 
-/* Тонкая цветная полоса по верхнему краю — по ней лента читается,
-   даже когда глаз скользит мимо текста. */
+/*
+ * Карточка несёт два памирских мотива, и оба намеренно держатся в стороне
+ * от текста: узор за строками мешал бы читать, а читать здесь главное.
+ *
+ * Сверху — шерози, плетёный зигзаг; он же заменяет простую цветную полосу,
+ * по которой лента различается на глаз.
+ * В нижнем углу — ромб с рогами архара, мотив джурабов Бадахшана, взятый
+ * почти прозрачным: фактура, а не картинка.
+ *
+ * Оба заданы маской, а не картинкой: форма в data-URI, цвет берётся
+ * из --type, поэтому узор красится в цвет своего типа наследия.
+ */
+.card--typed {
+	padding-top: 26px;
+	overflow: hidden;
+}
+
 .card--typed::before {
 	content: '';
 	position: absolute;
 	inset: 0 0 auto;
-	height: 4px;
-	border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-	background: var(--type, var(--accent));
+	height: 10px;
+	background-color: var(--type, var(--accent));
+	-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='10' viewBox='0 0 36 10'%3E%3Cg fill='none' stroke='%23000' stroke-width='2'%3E%3Cpath d='M0 8L9 2L18 8L27 2L36 8'/%3E%3C/g%3E%3C/svg%3E");
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='10' viewBox='0 0 36 10'%3E%3Cg fill='none' stroke='%23000' stroke-width='2'%3E%3Cpath d='M0 8L9 2L18 8L27 2L36 8'/%3E%3C/g%3E%3C/svg%3E");
+	-webkit-mask-repeat: repeat-x;
+	mask-repeat: repeat-x;
+	opacity: 0.75;
 }
 
-.card--typed {
-	padding-top: 24px;
-	overflow: hidden;
+
+/* Браузеры без масок показали бы сплошной прямоугольник цвета —
+   хуже, чем ничего. */
+@supports not ((mask-image: url('')) or (-webkit-mask-image: url(''))) {
+	.card--typed::before {
+		height: 4px;
+		opacity: 1;
+	}
+
+	.card::after {
+		display: none;
+	}
 }
 
 /* Кружок с иконкой типа наследия и кружок с инициалом человека — карточке
@@ -794,14 +849,14 @@ a.card:active {
 }
 
 .chip[aria-current='true'] {
-	background: var(--accent);
-	border-color: var(--accent);
+	background: var(--accent-strong);
+	border-color: var(--accent-strong);
 	color: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
 	.chip[aria-current='true'] {
-		color: #08111f;
+		color: #062130;
 	}
 }
 
