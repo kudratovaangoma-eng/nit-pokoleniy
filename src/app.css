@@ -36,17 +36,16 @@
 	--second: #0d9488;
 	--second-soft: #d7f0ec;
 
-	/* Свой оттенок каждому типу наследия — все в родственной гамме
-	   от синего к бирюзовому, поэтому лента остаётся единой, но песня
-	   и ремесло всё же различимы. */
-	--type-song: #0284c7;
-	--type-song-soft: #e0f2fe;
-	--type-ritual: #6366f1;
-	--type-ritual-soft: #e8e9fe;
-	--type-craft: #0d9488;
-	--type-craft-soft: #d7f0ec;
-	--type-oral_history: #0891b2;
-	--type-oral_history-soft: #daf2f8;
+	/* Цвета взяты у самого Памира: небо над хребтом — песня, огонь чироға —
+	   обряд, красный муры и сузани — ремесло, вода Пянджа — устная история. */
+	--type-song:#0284c7;
+	--type-song-soft:#e0f2fe;
+	--type-ritual:#b45309;
+	--type-ritual-soft:#fbecd5;
+	--type-craft:#b91c4a;
+	--type-craft-soft:#fce4eb;
+	--type-oral_history:#0f766e;
+	--type-oral_history-soft:#d8f1ed;
 
 	--ok: #15803d;
 	--ok-soft: #dcfce7;
@@ -89,14 +88,14 @@
 		--second: #2dd4bf;
 		--second-soft: #0b2f2c;
 
-		--type-song: #38bdf8;
-		--type-song-soft: #0c2c42;
-		--type-ritual: #a5b4fc;
-		--type-ritual-soft: #1d2047;
-		--type-craft: #2dd4bf;
-		--type-craft-soft: #0b2f2c;
-		--type-oral_history: #67e8f9;
-		--type-oral_history-soft: #0a2b35;
+		--type-song:#7dd3fc;
+		--type-song-soft:#0c2c42;
+		--type-ritual:#fbbf24;
+		--type-ritual-soft:#352408;
+		--type-craft:#fb7185;
+		--type-craft-soft:#3a1220;
+		--type-oral_history:#5eead4;
+		--type-oral_history-soft:#0b2f2c;
 
 		--ok: #4ade80;
 		--ok-soft: #14301d;
@@ -893,7 +892,7 @@ a.card:active {
 .hero {
 	position: relative;
 	margin-bottom: 32px;
-	padding: 40px 28px 36px;
+	padding: 40px 28px 88px;
 	border-radius: 26px;
 	background:
 		radial-gradient(120% 140% at 0% 0%, var(--accent-soft) 0%, transparent 58%),
@@ -917,6 +916,39 @@ a.card:active {
 	flex-wrap: wrap;
 	gap: 12px;
 	margin-top: 24px;
+}
+
+/* Хребет лежит в нижней части обложки, текст идёт поверх — поэтому
+   у обложки увеличен нижний отступ, иначе кнопки садятся на горы. */
+.hero__ridge {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 96px;
+	display: block;
+}
+
+.hero__ridge-far {
+	fill: var(--second);
+	opacity: 0.22;
+}
+
+.hero__ridge-near {
+	fill: var(--accent);
+	opacity: 0.26;
+}
+
+.hero__ridge-snow {
+	fill: var(--surface);
+	opacity: 0.75;
+}
+
+.hero h1,
+.hero .lead,
+.hero__actions {
+	position: relative;
 }
 
 .hero h1 {

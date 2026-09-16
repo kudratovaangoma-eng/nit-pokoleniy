@@ -33,6 +33,31 @@
 		<a class="btn btn--primary" href="/tasks">{$t('home.ctaHelp')}</a>
 		<a class="btn" href="/archive">{$t('home.ctaBrowse')}</a>
 	</div>
+
+	<!--
+		Хребет по нижнему краю обложки: всё, что здесь записывают, записывают
+		в горах. Два плана дают глубину, снег лежит только на дальних пиках —
+		как и бывает выше четырёх тысяч.
+	-->
+	<svg
+		class="hero__ridge"
+		viewBox="0 0 1200 170"
+		preserveAspectRatio="none"
+		aria-hidden="true"
+	>
+		<path
+			class="hero__ridge-far"
+			d="M0 118 L120 58 L205 92 L320 28 L430 86 L545 44 L660 96 L780 38 L900 88 L1020 48 L1125 94 L1200 66 L1200 170 L0 170 Z"
+		/>
+		<path
+			class="hero__ridge-snow"
+			d="M320 28 L352 46 L338 44 L330 50 L318 44 L306 48 Z M780 38 L812 57 L798 54 L790 60 L778 54 L766 58 Z"
+		/>
+		<path
+			class="hero__ridge-near"
+			d="M0 145 L95 108 L185 134 L305 88 L425 128 L525 98 L645 138 L765 102 L885 140 L1005 110 L1125 143 L1200 124 L1200 170 L0 170 Z"
+		/>
+	</svg>
 </section>
 
 <section class="about">
