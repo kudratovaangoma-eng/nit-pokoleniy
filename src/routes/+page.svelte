@@ -5,6 +5,16 @@
 	import TypeIcon from '$lib/components/TypeIcon.svelte';
 	import { HERITAGE_TYPES } from '$lib/types';
 
+	/**
+	 * Фотографии разделов. Пока есть только рубоб — снимок с Викисклада
+	 * под свободной лицензией; авторы указаны под плитками, этого требует
+	 * CC BY-SA. У остальных разделов плитка остаётся с рисунком, пока не
+	 * найдётся снимок по теме: плохое фото хуже честного значка.
+	 */
+	const PHOTOS: Record<string, string> = {
+		song: '/photos/rubob.jpg'
+	};
+
 	let { data } = $props();
 </script>
 
@@ -63,8 +73,15 @@
 	<ul class="types">
 		{#each HERITAGE_TYPES as type (type)}
 			<li>
-				<a class="type-tile type-{type}" href="/archive?type={type}">
-					<span class="type-tile__icon"><TypeIcon {type} size={30} /></span>
+				<a
+					class="type-tile type-{type}"
+					class:type-tile--photo={PHOTOS[type]}
+					href="/archive?type={type}"
+					style={PHOTOS[type] ? `background-image: url('${PHOTOS[type]}')` : undefined}
+				>
+					{#if !PHOTOS[type]}
+						<span class="type-tile__icon"><TypeIcon {type} size={30} /></span>
+					{/if}
 					<span class="type-tile__name">{$t(`heritage.${type}`)}</span>
 					<span class="type-tile__count">
 						{data.typeCounts[type]}
@@ -74,6 +91,12 @@
 			</li>
 		{/each}
 	</ul>
+
+	<p class="credits">
+		{$t('home.photoCredit')}
+		<a href="https://commons.wikimedia.org/wiki/File:Pamir_Rubab.jpg">Pamir Rubab</a>, Jo Dusepo,
+		<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>
+	</p>
 </section>
 
 {#if data.loadError}

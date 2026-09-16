@@ -1024,6 +1024,49 @@ a.card:active {
 	box-shadow: var(--shadow-md);
 }
 
+/*
+ * Плитка с фотографией. Текст лежит поверх снимка, поэтому под ним идёт
+ * градиент от прозрачного к тёмному — без него подпись пропадает на любом
+ * светлом кадре, а прочитать её должны в том числе те, кто видит плохо.
+ */
+.type-tile--photo {
+	position: relative;
+	background-size: cover;
+	background-position: center;
+	border-color: transparent;
+	min-height: 132px;
+	justify-content: flex-end;
+}
+
+.type-tile--photo::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	background: linear-gradient(180deg, rgba(4, 18, 28, 0.12) 30%, rgba(4, 18, 28, 0.82) 100%);
+}
+
+.type-tile--photo .type-tile__name,
+.type-tile--photo .type-tile__count {
+	position: relative;
+	color: #fff;
+}
+
+.type-tile--photo .type-tile__count {
+	opacity: 0.88;
+}
+
+/* Авторы снимков — этого требует лицензия CC BY-SA, и это просто честно */
+.credits {
+	margin: 12px 0 0;
+	font-size: 0.75rem;
+	color: var(--muted);
+}
+
+.credits a {
+	color: inherit;
+}
+
 .type-tile__icon {
 	display: inline-flex;
 	color: var(--type, var(--accent));
