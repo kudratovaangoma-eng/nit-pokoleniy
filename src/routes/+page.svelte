@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Icon from '$lib/components/Icon.svelte';
 	import TaskCard from '$lib/components/TaskCard.svelte';
 	import { lang, plural, t } from '$lib/i18n';
 
@@ -19,6 +20,24 @@
 	<div class="hero__actions">
 		<a class="btn btn--primary" href="/tasks">{$t('home.ctaHelp')}</a>
 		<a class="btn" href="/archive">{$t('home.ctaBrowse')}</a>
+	</div>
+</section>
+
+<section class="about">
+	<div class="about__item">
+		<span class="about__icon" aria-hidden="true"><Icon name="archive" size={20} /></span>
+		<h2 class="about__title">{$t('about.archive.title')}</h2>
+		<p class="about__text">{$t('about.archive.text')}</p>
+	</div>
+	<div class="about__item">
+		<span class="about__icon" aria-hidden="true"><Icon name="people" size={20} /></span>
+		<h2 class="about__title">{$t('about.people.title')}</h2>
+		<p class="about__text">{$t('about.people.text')}</p>
+	</div>
+	<div class="about__item">
+		<span class="about__icon" aria-hidden="true"><Icon name="tasks" size={20} /></span>
+		<h2 class="about__title">{$t('about.tasks.title')}</h2>
+		<p class="about__text">{$t('about.tasks.text')}</p>
 	</div>
 </section>
 

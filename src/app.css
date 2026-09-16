@@ -855,6 +855,50 @@ a.card:active {
 	color: var(--accent-text);
 }
 
+/*
+ * Три строки о том, что здесь происходит. Не карточки: это объяснение,
+ * а не объекты, которыми управляют — рамки и тени только утяжелили бы
+ * начало страницы.
+ */
+.about {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 22px;
+	margin: 0 0 32px;
+}
+
+@media (min-width: 640px) {
+	.about {
+		grid-template-columns: repeat(3, 1fr);
+		gap: 26px;
+	}
+}
+
+.about__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 38px;
+	height: 38px;
+	border-radius: 11px;
+	background: var(--accent-soft);
+	color: var(--accent-text);
+	margin-bottom: 10px;
+}
+
+.about__title {
+	font-size: 1.05rem;
+	font-weight: 700;
+	letter-spacing: -0.015em;
+	margin: 0 0 4px;
+}
+
+.about__text {
+	color: var(--muted);
+	font-size: 0.95rem;
+	margin: 0;
+}
+
 .counters {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
