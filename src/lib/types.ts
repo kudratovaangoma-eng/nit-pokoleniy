@@ -35,16 +35,27 @@ export function isValidSubtype(type: HeritageType, subtype: string): boolean {
 }
 export const PERSON_ROLES: PersonRole[] = ['carrier', 'helper'];
 
-/** Навыки помощников. Список короткий намеренно: длинный никто не читает. */
+/**
+ * Навыки помощников. Список короткий намеренно: длинный никто не читает.
+ *
+ * Здесь коды, а не подписи: в базу попадает код, на экран — перевод из
+ * словарей по ключу `skill.<код>`. Иначе тег, записанный по-русски,
+ * так и остался бы русским на английской и таджикской версии.
+ */
 export const SKILL_TAGS = [
-	'запись',
-	'съёмка',
-	'монтаж',
-	'перевод',
-	'расшифровка',
-	'организация',
-	'транспорт'
+	'recording',
+	'filming',
+	'editing',
+	'translation',
+	'transcription',
+	'organising',
+	'transport'
 ] as const;
+
+/** Подпись тега: у своих — перевод, у чужих (из старых данных) — как есть. */
+export function isKnownSkill(tag: string): boolean {
+	return (SKILL_TAGS as readonly string[]).includes(tag);
+}
 
 export type Profile = {
 	id: string;

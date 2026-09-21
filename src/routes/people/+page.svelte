@@ -2,12 +2,17 @@
 	import EmptyState from '$lib/components/EmptyState.svelte';
 	import FilterChips from '$lib/components/FilterChips.svelte';
 	import { t } from '$lib/i18n';
-	import { PERSON_ROLES, SKILL_TAGS, contactHref } from '$lib/types';
+	import { PERSON_ROLES, SKILL_TAGS, contactHref, isKnownSkill } from '$lib/types';
 
 	let { data } = $props();
 
 	let roleOptions = $derived(PERSON_ROLES.map((value) => ({ value, label: $t(`role.${value}`) })));
-	let skillOptions = SKILL_TAGS.map((value) => ({ value, label: value }));
+	let skillOptions = $derived(SKILL_TAGS.map((value) => ({ value, label: $t(`skill.${value}`) })));
+
+	/** Тег из старых данных может не знать перевода — показываем как есть. */
+	function skillLabel(tag: string): string {
+		return isKnownSkill(tag) ? $t(`skill.${tag}`) : tag;
+	}
 
 	/** Первая буква имени вместо фотографии: снимков носителей у нас нет. */
 	function initial(name: string): string {
@@ -67,7 +72,7 @@
 				{#if person.skill_tags?.length}
 					<div class="tags">
 						{#each person.skill_tags as tag (tag)}
-							<span class="tag">{tag}</span>
+							<span class="tag">{skillLabel(tag)}</span>
 						{/each}
 					</div>
 				{/if}

@@ -85,7 +85,7 @@
 							checked={form?.tags?.includes(tag) ?? false}
 							style="width: auto; min-height: 0; margin-right: 6px"
 						/>
-						{tag}
+						{$t(`skill.${tag}`)}
 					</label>
 				{/each}
 			</div>
