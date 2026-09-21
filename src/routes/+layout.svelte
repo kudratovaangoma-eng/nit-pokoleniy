@@ -72,9 +72,15 @@
 
 <main class="container">
 	{#if !data.supabaseConfigured}
-		<!-- Без ключей Supabase вход и сохранение не работают. Молчать об этом
-		     нельзя: человек решит, что сломаны кнопки, а не настройка. -->
-		<p class="notice notice--error">{$t('setup.noDatabase')}</p>
+		<!--
+			Молчать нельзя: человек решит, что сломаны кнопки, а не настройка.
+			Но на страницах с примерами важнее предупредить, что карточки
+			ненастоящие, — иначе он примет их за чужие записи и будет искать,
+			кто их добавил.
+		-->
+		<p class="notice notice--error">
+			{$page.data.demo ? $t('setup.demoData') : $t('setup.noDatabase')}
+		</p>
 	{/if}
 	{@render children()}
 </main>

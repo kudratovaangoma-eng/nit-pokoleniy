@@ -1,3 +1,5 @@
+import { DEMO_RECORDS } from '$lib/demo';
+import { supabaseConfigured } from '$lib/supabase';
 import { HERITAGE_TYPES, subtypesOf, type HeritageType } from '$lib/types';
 import type { PageServerLoad } from './$types';
 
@@ -5,6 +7,17 @@ export const load: PageServerLoad = async ({ url, locals }) => {
 	const type = url.searchParams.get('type') ?? '';
 	const subtype = url.searchParams.get('subtype') ?? '';
 	const q = (url.searchParams.get('q') ?? '').trim();
+
+	if (!supabaseConfigured) {
+		const needle = q.toLowerCase();
+		const records = DEMO_RECORDS.filter(
+			(r) =>
+				(!type || r.type === type) &&
+				(!needle ||
+					[r.title, r.carrier_name, r.location].some((f) => f.toLowerCase().includes(needle)))
+		);
+		return { records, type, subtype, q, loadError: false, demo: true };
+	}
 
 	let query = locals.supabase
 		.from('records')
@@ -40,6 +53,7 @@ export const load: PageServerLoad = async ({ url, locals }) => {
 		type,
 		subtype,
 		q,
-		loadError: Boolean(error)
+		loadError: Boolean(error),
+		demo: false
 	};
 };

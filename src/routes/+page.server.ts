@@ -1,7 +1,29 @@
+import { DEMO_PEOPLE, DEMO_RECORDS, DEMO_TASKS } from '$lib/demo';
+import { supabaseConfigured } from '$lib/supabase';
 import { HERITAGE_TYPES } from '$lib/types';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals }) => {
+	// Пока базы нет, показываем примеры: пустой сайт нельзя ни оценить,
+	// ни показать человеку. С настоящими ключами сюда уже не заходим.
+	if (!supabaseConfigured) {
+		const done = DEMO_TASKS.filter((t) => t.status === 'done');
+		return {
+			demo: true,
+			loadError: false,
+			typeCounts: Object.fromEntries(
+				HERITAGE_TYPES.map((type) => [type, DEMO_RECORDS.filter((r) => r.type === type).length])
+			) as Record<string, number>,
+			counts: {
+				records: DEMO_RECORDS.length,
+				people: DEMO_PEOPLE.length,
+				done: done.length
+			},
+			latestRecords: DEMO_RECORDS.slice(-3).reverse(),
+			openTasks: DEMO_TASKS.filter((t) => t.status !== 'done').slice(0, 3)
+		};
+	}
+
 	// Сколько записей в каждом разделе — числа на плитках говорят, где уже
 	// есть что послушать, а где пусто и нужна помощь.
 	const byType = Promise.all(
@@ -29,6 +51,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 	]);
 
 	return {
+		demo: false,
 		// Счётчики — обещание, что дело идёт. Ноль из-за сбоя связи и честный
 		// ноль в начале пути — разные вещи, и человеку их нельзя путать.
 		loadError: Boolean(records.error || people.error || doneTasks.error || latest.error || open.error),

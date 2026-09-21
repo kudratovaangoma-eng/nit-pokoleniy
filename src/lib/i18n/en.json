@@ -24,6 +24,7 @@
 	"common.loadFailedShort": "Could not load — no connection to the database.",
 	"error.notFound": "Page not found",
 	"setup.noDatabase": "The database is not connected yet: the .env file still holds placeholders instead of Supabase keys. You can browse the pages, but signing in and adding records, people and tasks will not work.",
+	"setup.demoData": "These are examples, not real recordings: the database is not connected yet. You can look and click around, but signing in and adding anything will not work — and these cards will disappear once the database is in place.",
 	"home.heroBefore": "Record it",
 	"home.heroAccent": "while they remember",
 	"home.lead": "Rituals, songs, crafts and spoken histories leave with the people who remember them. Here we record them — one small recording at a time.",

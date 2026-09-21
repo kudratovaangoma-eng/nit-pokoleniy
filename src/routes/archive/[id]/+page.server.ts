@@ -1,7 +1,22 @@
 import { error } from '@sveltejs/kit';
+import { DEMO_RECORDS, DEMO_TASKS } from '$lib/demo';
+import { supabaseConfigured } from '$lib/supabase';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params, locals }) => {
+	if (!supabaseConfigured) {
+		const record = DEMO_RECORDS.find((r) => r.id === params.id);
+		if (!record) error(404, 'Запись не найдена');
+		return {
+			record,
+			tasks: DEMO_TASKS.filter((t) => t.result_record_id === record.id).map((t) => ({
+				id: t.id,
+				title: t.title
+			})),
+			demo: true
+		};
+	}
+
 	const { data, error: dbError } = await locals.supabase
 		.from('records')
 		.select(
@@ -19,5 +34,5 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 		.select('id, title')
 		.eq('result_record_id', params.id);
 
-	return { record: data, tasks: tasks ?? [] };
+	return { record: data, tasks: tasks ?? [], demo: false };
 };

@@ -1,3 +1,5 @@
+import { DEMO_TASKS } from '$lib/demo';
+import { supabaseConfigured } from '$lib/supabase';
 import type { PageServerLoad } from './$types';
 
 /**
@@ -10,6 +12,15 @@ function responderCount(row: { task_responders?: { count: number }[] | null }): 
 }
 
 export const load: PageServerLoad = async ({ locals }) => {
+	if (!supabaseConfigured) {
+		return {
+			openTasks: DEMO_TASKS.filter((t) => t.status !== 'done'),
+			doneTasks: DEMO_TASKS.filter((t) => t.status === 'done'),
+			loadError: false,
+			demo: true
+		};
+	}
+
 	const [open, done] = await Promise.all([
 		locals.supabase
 			.from('tasks')
@@ -33,6 +44,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 			responder_count: responderCount(task)
 		})),
 		doneTasks: done.data ?? [],
-		loadError: Boolean(open.error || done.error)
+		loadError: Boolean(open.error || done.error),
+		demo: false
 	};
 };

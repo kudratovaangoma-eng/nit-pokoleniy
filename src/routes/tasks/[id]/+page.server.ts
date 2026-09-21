@@ -1,7 +1,23 @@
 import { error, fail, redirect } from '@sveltejs/kit';
+import { DEMO_TASKS } from '$lib/demo';
+import { supabaseConfigured } from '$lib/supabase';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params, locals }) => {
+	if (!supabaseConfigured) {
+		const task = DEMO_TASKS.find((t) => t.id === params.id);
+		if (!task) error(404, 'Дело не найдено');
+		return {
+			task,
+			// у примеров откликнувшиеся только числом: имён мы не выдумываем
+			responders: [],
+			myRecords: [],
+			canWrite: false,
+			hasResponded: false,
+			demo: true
+		};
+	}
+
 	const { data: task, error: dbError } = await locals.supabase
 		.from('tasks')
 		.select(
@@ -39,7 +55,8 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 		canWrite: Boolean(locals.user),
 		hasResponded: Boolean(
 			locals.user && (responders ?? []).some((r) => r.profile_id === locals.user!.id)
-		)
+		),
+		demo: false
 	};
 };
 
