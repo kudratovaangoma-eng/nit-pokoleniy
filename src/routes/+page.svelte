@@ -14,7 +14,8 @@
 	 * строка с именем автора и лицензией.
 	 */
 	const PHOTOS: Record<string, string> = {
-		song: '/photos/rubob.jpg'
+		song: '/photos/rubob.jpg',
+		craft: '/photos/chirib.jpg'
 	};
 
 	let { data } = $props();
