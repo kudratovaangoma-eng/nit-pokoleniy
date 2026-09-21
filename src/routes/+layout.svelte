@@ -3,7 +3,7 @@
 	import { page } from '$app/stores';
 	import Icon from '$lib/components/Icon.svelte';
 	import Logo from '$lib/components/Logo.svelte';
-	import { lang, t } from '$lib/i18n';
+	import { LANGS, LANG_LABEL, lang, t } from '$lib/i18n';
 
 	let { data, children } = $props();
 	let loggedIn = $derived(Boolean(data.session));
@@ -48,28 +48,23 @@
 
 			<!--
 				Выбор языка живёт здесь же, в панели навигации: в шапке его
-				не находили. Оба языка показаны сразу — переключатель с одной
+				не находили. Все языки показаны сразу — переключатель с одной
 				надписью на чужом языке не опознаётся как переключатель.
-				Обычная форма, работает и без JS.
+				Список берётся из LANGS: новый язык добавляется одной строкой
+				там, а не здесь. Обычная форма, работает и без JS.
 			-->
 			<form method="POST" action="/lang" class="lang-switch" aria-label={$t('lang.label')}>
 				<input type="hidden" name="redirectTo" value={path + $page.url.search} />
-				<button
-					type="submit"
-					name="lang"
-					value="ru"
-					aria-current={$lang === 'ru' ? 'true' : undefined}
-				>
-					РУ
-				</button>
-				<button
-					type="submit"
-					name="lang"
-					value="tg"
-					aria-current={$lang === 'tg' ? 'true' : undefined}
-				>
-					ТҶ
-				</button>
+				{#each LANGS as code (code)}
+					<button
+						type="submit"
+						name="lang"
+						value={code}
+						aria-current={$lang === code ? 'true' : undefined}
+					>
+						{LANG_LABEL[code]}
+					</button>
+				{/each}
 			</form>
 		</nav>
 	</div>

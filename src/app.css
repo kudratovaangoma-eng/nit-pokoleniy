@@ -26,8 +26,8 @@
 	--border: #d2e7f4;
 	--border-strong: #b0d4e9;
 
-	/* Терракота — цвет обожжённой глины и шафрана; second — холодный
-	   контрапункт, чтобы страница не выглядела музейной витриной */
+	/* Небесно-голубой — цвет, который видно в руз памирского потолка;
+	   бирюза вторым, чтобы страница не стала одноцветной */
 	--accent: #0284c7;
 	--accent-strong: #0378b4;
 	--accent-hover: #0369a1;
@@ -346,9 +346,29 @@ a {
 }
 
 .nav .lang-switch button {
-	min-width: 36px;
+	min-width: 32px;
 	min-height: 40px;
-	padding: 0 8px;
+	padding: 0 6px;
+	font-size: 0.78rem;
+}
+
+/* На самых узких экранах панель делят четыре раздела и три языка —
+   отступы ужимаем, чтобы ничего не выдавило за край. */
+@media (max-width: 380px) {
+	.nav {
+		gap: 0;
+		padding-inline: 4px;
+	}
+
+	.nav .lang-switch {
+		margin-left: 2px;
+		padding: 2px;
+	}
+
+	.nav .lang-switch button {
+		min-width: 28px;
+		padding: 0 4px;
+	}
 }
 
 @media (min-width: 760px) {
