@@ -15,7 +15,8 @@
 	 */
 	const PHOTOS: Record<string, string> = {
 		song: '/photos/rubob.jpg',
-		craft: '/photos/chirib.jpg'
+		craft: '/photos/chirib.jpg',
+		ritual: '/photos/maros.jpg'
 	};
 
 	let { data } = $props();
@@ -120,6 +121,11 @@
 		{/each}
 	</ul>
 
+	<p class="credits">
+		{$t('home.photoCredit')}
+		<a href="https://commons.wikimedia.org/wiki/File:Pamiri_men.jpg">Pamiri men</a> —
+		общественное достояние, Викисклад. Рубоб и чириб сняты участниками проекта.
+	</p>
 </section>
 
 {#if data.loadError}
