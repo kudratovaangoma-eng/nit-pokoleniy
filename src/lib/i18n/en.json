@@ -1,7 +1,6 @@
 {
 	"site.name": "Thread of Generations",
 	"site.tagline": "Recording what the elders remember, while they are still here",
-
 	"nav.home": "Home",
 	"nav.archive": "Archive",
 	"nav.people": "People",
@@ -9,7 +8,6 @@
 	"nav.mine": "My tasks",
 	"nav.login": "Sign in",
 	"nav.logout": "Sign out",
-
 	"common.save": "Save",
 	"common.cancel": "Cancel",
 	"common.search": "Search",
@@ -26,7 +24,6 @@
 	"common.loadFailedShort": "Could not load — no connection to the database.",
 	"error.notFound": "Page not found",
 	"setup.noDatabase": "The database is not connected yet: the .env file still holds placeholders instead of Supabase keys. You can browse the pages, but signing in and adding records, people and tasks will not work.",
-
 	"home.heroBefore": "Record it",
 	"home.heroAccent": "while they remember",
 	"home.lead": "Rituals, songs, crafts and spoken histories leave with the people who remember them. Here we record them — one small recording at a time.",
@@ -47,24 +44,26 @@
 	"home.openTasks": "What needs doing right now",
 	"home.seeAll": "See all",
 	"home.startHere": "Where to start: pick one task from the list and sign up for it. One task means a few days, not half a year.",
-
 	"about.archive.title": "We keep it",
 	"about.archive.text": "We record songs, rituals and crafts from those who still remember them. The person's name stays beside the recording for good.",
 	"about.people.title": "We find each other",
 	"about.people.text": "Here you can see who remembers what and who can help: record, translate, drive, arrange.",
 	"about.tasks.title": "One at a time",
 	"about.tasks.text": "Not «save the culture», but one task for a few days: visit one person and record one song.",
-
+	"manifesto.title": "Why the hurry",
+	"manifesto.p1": "Every year someone takes with them what no one else knows. A lullaby only their mother sang. The order of a rite as one village kept it. The name of a pattern that appears in no book.",
+	"manifesto.p2": "It does not vanish loudly. It simply stops being heard: there is no one left to ask, and no one left to answer.",
+	"manifesto.p3": "The young are not turning away from tradition — more often there is simply no one to take it from. Between the person who remembers and the person who could learn there is nothing but time. And time is against us.",
+	"manifesto.p4": "So this is not a museum. Here there is a recording you can listen to, the name of the person it came from, and a task you can finish over a weekend.",
+	"manifesto.closing": "One song, one story, one craft at a time — that is how the thread holds.",
 	"heritage.song": "Song",
 	"heritage.ritual": "Ritual",
 	"heritage.craft": "Craft",
 	"heritage.oral_history": "Spoken history",
-
 	"role.carrier": "Keeper",
 	"role.helper": "Helper",
 	"role.carrier.hint": "remembers rituals, songs, a craft",
 	"role.helper.hint": "can record, translate, drive, arrange",
-
 	"archive.title": "Archive",
 	"archive.subtitle": "Material recorded from the people who keep these traditions",
 	"archive.add": "Add a recording",
@@ -96,7 +95,6 @@
 	"archive.emptyFiltered": "Nothing found for this search.",
 	"archive.draftRestored": "Restored an unsaved draft",
 	"archive.openFile": "Open the file",
-
 	"people.title": "People",
 	"people.subtitle": "Who remembers, and who can help",
 	"people.add": "Add a person",
@@ -119,7 +117,6 @@
 	"people.needFields": "Give a name and choose whether this is a keeper or a helper",
 	"people.empty": "No one here yet. Add yourself — then others will know who to turn to.",
 	"people.emptyFiltered": "No one found for this search.",
-
 	"tasks.title": "Tasks",
 	"tasks.subtitle": "Small, specific tasks, each one a matter of days",
 	"tasks.add": "New task",
@@ -158,7 +155,6 @@
 	"tasks.empty": "No tasks yet. The first one is usually the simplest: go to one person and record one song.",
 	"tasks.emptyFiltered": "No tasks match this filter.",
 	"tasks.createdBy": "proposed by",
-
 	"auth.loginTitle": "Sign in",
 	"auth.loginLead": "Enter your email and we will send a sign-in link. No password needed.",
 	"auth.email": "Email",
@@ -169,6 +165,5 @@
 	"auth.loginToContinue": "Sign in and continue",
 	"auth.name": "What is your name",
 	"auth.nameHint": "This name will appear in the «recorded by» line",
-
 	"lang.label": "Interface language"
 }

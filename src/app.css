@@ -1233,6 +1233,45 @@ a.card:active {
 	color: var(--muted);
 }
 
+/*
+ * Манифест. Набран крупнее основного текста и уже по колонке — это единственное
+ * место на сайте, которое читают подряд, а не просматривают. Нить идёт слева
+ * вдоль всего блока: у остальных разделов она короткая, у этого тянется.
+ */
+.manifesto {
+	position: relative;
+	margin: 56px 0 8px;
+	padding: 4px 0 4px 22px;
+	max-width: 58ch;
+}
+
+.manifesto::before {
+	content: '';
+	position: absolute;
+	left: 3px;
+	top: 10px;
+	bottom: 10px;
+	width: 2px;
+	border-radius: 2px;
+	background: linear-gradient(var(--accent), var(--second));
+	opacity: 0.5;
+}
+
+.manifesto h2 {
+	margin-top: 0;
+}
+
+.manifesto p {
+	font-size: 1.05rem;
+	line-height: 1.68;
+	margin-bottom: 16px;
+}
+
+.manifesto__closing {
+	font-weight: 650;
+	color: var(--accent-text);
+}
+
 /* --- Состояния ----------------------------------------------------------- */
 
 .empty {

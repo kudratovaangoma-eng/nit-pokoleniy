@@ -198,3 +198,12 @@
 	</ul>
 	<p style="margin-top: 12px"><a href="/archive">{$t('home.seeAll')}</a></p>
 {/if}
+
+<section class="manifesto">
+	<h2>{$t('manifesto.title')}</h2>
+	<p>{$t('manifesto.p1')}</p>
+	<p>{$t('manifesto.p2')}</p>
+	<p>{$t('manifesto.p3')}</p>
+	<p>{$t('manifesto.p4')}</p>
+	<p class="manifesto__closing">{$t('manifesto.closing')}</p>
+</section>
