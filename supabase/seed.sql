@@ -125,5 +125,7 @@ insert into tasks (title, description, deadline, status) values
 -- Связываем выполненное дело с его результатом: без этой связи
 -- лента дел не показывает, что работа доходит до конца.
 update tasks
-set result_record_id = (select id from records where title like 'Наврузский стол%')
+-- limit 1: если примеры зальют дважды, подзапрос вернёт две строки
+-- и весь файл откатится с ошибкой «more than one row»
+set result_record_id = (select id from records where title like 'Наврузский стол%' limit 1)
 where title like 'Записать наврузские обряды%';
