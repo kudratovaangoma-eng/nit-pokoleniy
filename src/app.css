@@ -229,8 +229,16 @@ a {
 	   которые не знают color-mix: иначе шапка окажется прозрачной */
 	background: var(--bg);
 	background: color-mix(in srgb, var(--bg) 88%, transparent);
-	backdrop-filter: saturate(180%) blur(12px);
 	border-bottom: 1px solid var(--border);
+	/*
+	 * backdrop-filter здесь нарочно НЕ ставим (хотя у .nav ниже он есть).
+	 * .nav лежит внутри этой шапки и на телефоне держится на
+	 * position: fixed; bottom: 0 — а filter/backdrop-filter на предке
+	 * создаёт для fixed-потомков новый containing block: «bottom: 0»
+	 * начинает означать «низ шапки», а не «низ экрана». Панель навигации
+	 * уезжает наверх и накрывает собой кнопку «Войти». Проверено вживую —
+	 * так и было.
+	 */
 }
 
 /*
